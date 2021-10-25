@@ -3,6 +3,8 @@ python310.zip
 # Pip libs
 Lib
 Lib\site-packages
+# yt-dl
+..\yt-dl
 
 # Uncomment to run site.main() automatically
 #import site
