@@ -1,8 +1,7 @@
 [YT-DLP]
 
-[Release version] [CI Status] [License: Unlicense] [Donate] [Supported
-Sites] [Discord] [Doc Status] [Commits] [Last Commit] [Downloads] [PyPi
-Downloads]
+[Release version] [License: Unlicense] [Donate] [Docs] [Supported Sites]
+[PyPi] [CI Status] [Discord] [Matrix] [Commits] [Last Commit]
 
 yt-dlp is a youtube-dl fork based on the now inactive youtube-dlc. The
 main focus of this project is adding new features and patches while also
@@ -57,8 +56,9 @@ keeping up to date with the original project
 NEW FEATURES
 
 
-The major new features from the latest release of blackjack4494/yt-dlc
-are:
+-   Based on YOUTUBE-DL 2021.12.17 COMMIT/5ADD3F4 and YOUTUBE-DLC
+    2020.11.11-3 COMMIT/F9401F2: You get all the features and patches of
+    youtube-dlc in addition to the latest youtube-dl
 
 -   SPONSORBLOCK INTEGRATION: You can mark/remove sponsor sections in
     youtube videos by utilizing the SponsorBlock API
@@ -68,10 +68,6 @@ are:
     instead of simply using larger bitrate. Furthermore, you can now
     specify the sort order using -S. This allows for much easier format
     selection than what is possible by simply using --format (examples)
-
--   MERGED WITH YOUTUBE-DL COMMIT/379F52A: (v2021.06.06) You get all the
-    latest features and patches of youtube-dl in addition to all the
-    features of youtube-dlc
 
 -   MERGED WITH ANIMELOVER1984/YOUTUBE-DL: You get most of the features
     and improvements from animelover1984/youtube-dl including
@@ -86,18 +82,20 @@ are:
     -   Search (ytsearch:, ytsearchdate:), search URLs and in-channel
         search works
     -   Mixes supports downloading multiple pages of content
-    -   Most (but not all) age-gated content can be downloaded without
+    -   Some (but not all) age-gated content can be downloaded without
         cookies
-    -   Partial workaround for throttling issue
+    -   Fix for n-sig based throttling
     -   Redirect channel's home URL automatically to /video to preserve
         the old behaviour
     -   255kbps audio is extracted (if available) from youtube music
         when premium cookies are given
     -   Youtube music Albums, channels etc can be downloaded (except
         self-uploaded music)
+    -   Download livestreams from the start using --live-from-start
+        (experimental)
 -   COOKIES FROM BROWSER: Cookies can be automatically extracted from
     all major web browsers using
-    --cookies-from-browser BROWSER[:PROFILE]
+    --cookies-from-browser BROWSER[+KEYRING][:PROFILE]
 
 -   SPLIT VIDEO BY CHAPTERS: Videos can be split into multiple files
     based on chapters using --split-chapters
@@ -109,40 +107,11 @@ are:
 -   ARIA2C WITH HLS/DASH: You can use aria2c as the external downloader
     for DASH(mpd) and HLS(m3u8) formats
 
--   NEW EXTRACTORS: AnimeLab, Philo MSO, Spectrum MSO, SlingTV MSO,
-    Cablevision MSO, RCN MSO, Rcs, Gedi, bitwave.tv, mildom, audius,
-    zee5, mtv.it, wimtv, pluto.tv, niconico users, discoveryplus.in,
-    mediathek, NFHSNetwork, nebula, ukcolumn, whowatch, MxplayerShow,
-    parlview (au), YoutubeWebArchive, fancode, Saitosan, ShemarooMe,
-    telemundo, VootSeries, SonyLIVSeries, HotstarSeries, VidioPremier,
-    VidioLive, RCTIPlus, TBS Live, douyin, pornflip,
-    ParamountPlusSeries, ScienceChannel, Utreon, OpenRec, BandcampMusic,
-    blackboardcollaborate, eroprofile albums, mirrativ, BannedVideo,
-    bilibili categories, Epicon, filmmodu, GabTV, HungamaAlbum,
-    ManotoTV, Niconico search, Patreon User, peloton, ProjectVeritas,
-    radiko, StarTV, tiktok user, Tokentube, voicy, TV2HuSeries,
-    biliintl, 17live, NewgroundsUser, peertube channel/playlist,
-    ZenYandex, CAM4, CGTN, damtomo, gotostage, Koo, Mediaite,
-    Mediaklikk, MuseScore, nzherald, Olympics replay, radlive,
-    SovietsCloset, Streamanity, Theta, Chingari, ciscowebex, Gettr,
-    GoPro, N1, Theta, Veo, Vupload, NovaPlay, SkyNewsAU, EUScreen,
-    Gronkh, microsoftstream, on24, trovo channels
+-   NEW AND FIXED EXTRACTORS: Many new extractors have been added and a
+    lot of existing ones have been fixed. See the changelog or the list
+    of supported sites
 
--   FIXED/IMPROVED EXTRACTORS: archive.org, roosterteeth.com, skyit,
-    instagram, itv, SouthparkDe, spreaker, Vlive, akamai, ina, rumble,
-    tennistv, amcnetworks, la7 podcasts, linuxacadamy, nitter,
-    twitcasting, viu, crackle, curiositystream, mediasite,
-    rmcdecouverte, sonyliv, tubi, tenplay, patreon, videa, yahoo,
-    BravoTV, crunchyroll, RTP, viki, Hotstar, vidio, vimeo, mediaset,
-    Mxplayer, nbcolympics, ParamountPlus, Newgrounds, SAML Verizon
-    login, Hungama, afreecatv, aljazeera, ATV, bitchute, camtube, CDA,
-    eroprofile, facebook, HearThisAtIE, iwara, kakao, Motherless, Nova,
-    peertube, pornhub, reddit, tiktok, TV2, TV2Hu, tv5mondeplus, VH1,
-    Viafree, XHamster, 9Now, AnimalPlanet, Arte, CBC, Chingari,
-    comedycentral, DIYNetwork, niconico, dw, funimation, globo, HiDive,
-    NDR, Nuvid, Oreilly, pbs, plutotv, reddit, redtube, soundcloud,
-    SpankBang, VrtNU, bbc, Bilibili, LinkedInLearning, parliamentlive,
-    PolskieRadio, Streamable, vidme, francetv, 7plus, tagesschau
+-   NEW MSOS: Philo, Spectrum, SlingTV, Cablevision, RCN
 
 -   SUBTITLE EXTRACTION FROM MANIFESTS: Subtitles can be extracted from
     streaming media manifests. See commit/be6202f for details
@@ -160,40 +129,35 @@ are:
     output template for details. Even more advanced operations can also
     be done with the help of --parse-metadata and --replace-in-metadata
 
--   OTHER NEW OPTIONS: --print, --sleep-requests, --convert-thumbnails,
-    --write-link, --force-download-archive, --force-overwrites,
-    --break-on-reject etc
+-   OTHER NEW OPTIONS: Many new options have been added such as
+    --concat-playlist, --print, --wait-for-video, --sleep-requests,
+    --convert-thumbnails, --write-link, --force-download-archive,
+    --force-overwrites, --break-on-reject etc
 
--   IMPROVEMENTS: Regex and other operators in --match-filter, multiple
-    --postprocessor-args and --downloader-args, faster archive checking,
-    more format selection options etc
+-   IMPROVEMENTS: Regex and other operators in --format/--match-filter,
+    multiple --postprocessor-args and --downloader-args, faster archive
+    checking, more format selection options, merge multi-video/audio,
+    multiple --config-locations, --exec at different stages, etc
 
--   PLUGIN EXTRACTORS: Extractors can be loaded from an external file.
-    See plugins for details
+-   PLUGINS: Extractors and PostProcessors can be loaded from an
+    external file. See plugins for details
 
 -   SELF-UPDATER: The releases can be updated using yt-dlp -U
 
 See changelog or commits for the full list of changes
 
-PS: Some of these changes are already in youtube-dlc, but are still
-unreleased. See this for details
-
-If you are coming from youtube-dl, the amount of changes are very large.
-Compare options and supported sites with youtube-dl's to get an idea of
-the massive number of features/patches youtube-dlc has accumulated.
-
 Differences in default behavior
 
 Some of yt-dlp's default options are different from that of youtube-dl
-and youtube-dlc.
+and youtube-dlc:
 
--   The options --id, --auto-number (-A), --title (-t) and --literal
-    (-l), no longer work. See removed options for details
--   avconv is not supported as as an alternative to ffmpeg
+-   The options --auto-number (-A), --title (-t) and --literal (-l), no
+    longer work. See removed options for details
+-   avconv is not supported as an alternative to ffmpeg
 -   The default output template is %(title)s [%(id)s].%(ext)s. There is
     no real reason for this change. This was changed before yt-dlp was
     ever made public and now there are no plans to change it back to
-    %(title)s.%(id)s.%(ext)s. Instead, you may use
+    %(title)s-%(id)s.%(ext)s. Instead, you may use
     --compat-options filename
 -   The default format sorting is different from youtube-dl and prefers
     higher resolution and better codecs rather than higher bitrates. You
@@ -202,22 +166,28 @@ and youtube-dlc.
     sorting order
 -   The default format selector is bv*+ba/b. This means that if a
     combined video + audio format that is better than the best
-    video-only format is found, the former will be prefered. Use
+    video-only format is found, the former will be preferred. Use
     -f bv+ba/b or --compat-options format-spec to revert this
 -   Unlike youtube-dlc, yt-dlp does not allow merging multiple
     audio/video streams into one file by default (since this conflicts
     with the use of -f bv*+ba). If needed, this feature must be enabled
     using --audio-multistreams and --video-multistreams. You can also
     use --compat-options multistreams to enable both
--   --ignore-errors is enabled by default. Use --abort-on-error or
+-   --no-abort-on-error is enabled by default. Use --abort-on-error or
     --compat-options abort-on-error to abort on errors instead
 -   When writing metadata files such as thumbnails, description or
     infojson, the same information (if available) is also written for
     playlists. Use --no-write-playlist-metafiles or
     --compat-options no-playlist-metafiles to not write these files
 -   --add-metadata attaches the infojson to mkv files in addition to
-    writing the metadata when used with --write-infojson. Use
-    --compat-options no-attach-info-json to revert this
+    writing the metadata when used with --write-info-json. Use
+    --no-embed-info-json or --compat-options no-attach-info-json to
+    revert this
+-   Some metadata are embedded into different fields when using
+    --add-metadata as compared to youtube-dl. Most notably, comment
+    field contains the webpage_url and synopsis contains the
+    description. You can use --parse-metadata to modify this to your
+    liking or use --compat-options embed-metadata to revert this
 -   playlist_index behaves differently when used with options like
     --playlist-reverse and --playlist-items. See #302 for details. You
     can use --compat-options playlist-index if you want to keep the
@@ -235,10 +205,12 @@ and youtube-dlc.
 -   Youtube channel URLs are automatically redirected to /video. Append
     a /featured to the URL to download only the videos in the home page.
     If the channel does not have a videos tab, we try to download the
-    equivalent UU playlist instead. Also, /live URLs raise an error if
-    there are no live videos instead of silently downloading the entire
-    channel. You may use --compat-options no-youtube-channel-redirect to
-    revert all these redirections
+    equivalent UU playlist instead. For all other tabs, if the channel
+    does not show the requested tab, an error will be raised. Also,
+    /live URLs raise an error if there are no live videos instead of
+    silently downloading the entire channel. You may use
+    --compat-options no-youtube-channel-redirect to revert all these
+    redirections
 -   Unavailable videos are also listed for youtube playlists. Use
     --compat-options no-youtube-unavailable-videos to remove this
 -   If ffmpeg is used as the downloader, the downloading and merging of
@@ -253,8 +225,8 @@ and youtube-dlc.
 -   When --embed-subs and --write-subs are used together, the subtitles
     are written to disk and also embedded in the media file. You can use
     just --embed-subs to embed the subs and automatically delete the
-    seperate file. See #630 (comment) for more info.
-    --compat-options no-keep-subs can be used to revert this.
+    separate file. See #630 (comment) for more info.
+    --compat-options no-keep-subs can be used to revert this
 
 For ease of use, a few more compat options are available: *
 --compat-options all: Use all compat options *
@@ -267,20 +239,19 @@ For ease of use, a few more compat options are available: *
 INSTALLATION
 
 
-yt-dlp is not platform specific. So it should work on your Unix box, on
-Windows or on macOS
+You can install yt-dlp using one of the following methods:
 
-You can install yt-dlp using one of the following methods: * Download
-the binary from the latest release * With Homebrew,
-brew install yt-dlp/taps/yt-dlp * Use PyPI package:
-python3 -m pip install --upgrade yt-dlp * Install master branch:
-python3 -m pip3 install -U https://github.com/yt-dlp/yt-dlp/archive/master.zip
+Using the release binary
 
-Note that on some systems, you may need to use py or python instead of
-python3
+You can simply download the correct binary file for your OS
 
-UNIX users (Linux, macOS, BSD) can also install the latest release one
-of the following ways:
+[Windows] [Linux] [Source Tarball] [Other variants] [ALl versions]
+
+Note: The manpages, shell completion files etc. are available in the
+source tarball
+
+In UNIX-like OSes (MacOS, Linux, BSD), you can also install the same in
+one of the following ways:
 
     sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
@@ -288,20 +259,43 @@ of the following ways:
     sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
 
-    sudo aria2c https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+    sudo aria2c https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp --dir /usr/local/bin -o yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
 
-macOS or Linux users that are using Homebrew (formerly known as
-Linuxbrew for Linux users) can also install it by:
+With PIP
+
+You can install the PyPI package with:
+
+    python3 -m pip install -U yt-dlp
+
+You can install without any of the optional dependencies using:
+
+    python3 -m pip install --no-deps -U yt-dlp
+
+If you want to be on the cutting edge, you can also install the master
+branch with:
+
+    python3 -m pip install --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.zip
+
+Note that on some systems, you may need to use py or python instead of
+python3
+
+With Homebrew
+
+macOS or Linux users that are using Homebrew can also install it by:
 
     brew install yt-dlp/taps/yt-dlp
 
+
 UPDATE
 
-You can use yt-dlp -U to update if you are using the provided release.
-If you are using pip, simply re-run the same command that was used to
-install the program. If you have installed using Homebrew, run
-brew upgrade yt-dlp/taps/yt-dlp
+You can use yt-dlp -U to update if you are using the provided release
+
+If you installed with pip, simply re-run the same command that was used
+to install the program
+
+If you installed using Homebrew, run brew upgrade yt-dlp/taps/yt-dlp
+
 
 RELEASE FILES
 
@@ -310,12 +304,12 @@ Recommended
   -----------------------------------------------------------------------
   File                                Description
   ----------------------------------- -----------------------------------
-  yt-dlp                              Platform independant binary. Needs
-                                      Python (Recommended for UNIX-LIKE
+  yt-dlp                              Platform-independant binary. Needs
+                                      Python (recommended for UNIX-LIKE
                                       SYSTEMS)
 
-  yt-dlp.exe                          Windows standalone x64 binary
-                                      (Recommended for WINDOWS)
+  yt-dlp.exe                          Windows (Win7 SP1+) standalone x64
+                                      binary (recommended for WINDOWS)
   -----------------------------------------------------------------------
 
 Alternatives
@@ -323,20 +317,21 @@ Alternatives
   -----------------------------------------------------------------------
   File                                Description
   ----------------------------------- -----------------------------------
-  yt-dlp_macos                        MacOS standalone executable
+  yt-dlp_macos                        MacOS (10.15+) standalone
+                                      executable
 
-  yt-dlp_x86.exe                      Windows standalone x86 (32bit)
-                                      binary
+  yt-dlp_x86.exe                      Windows (Vista SP2+) standalone x86
+                                      (32-bit) binary
 
-  yt-dlp_min.exe                      Windows standalone x64 binary built
-                                      with py2exe. Does not contain
-                                      pycryptodomex, needs VC++14
+  yt-dlp_min.exe                      Windows (Win7 SP1+) standalone x64
+                                      binary built with py2exe. Does not
+                                      contain pycryptodomex, needs VC++14
 
-  yt-dlp_win.zip                      Unpackaged windows executable (No
+  yt-dlp_win.zip                      Unpackaged Windows executable (no
                                       auto-update)
 
-  yt-dlp_macos.zip                    Unpackaged MacOS executable (No
-                                      auto-update)
+  yt-dlp_macos.zip                    Unpackaged MacOS (10.15+)
+                                      executable (no auto-update)
   -----------------------------------------------------------------------
 
 Misc
@@ -347,45 +342,56 @@ Misc
   SHA2-512SUMS    GNU-style SHA512 sums
   SHA2-256SUMS    GNU-style SHA256 sums
 
+
 DEPENDENCIES
 
 Python versions 3.6+ (CPython and PyPy) are supported. Other versions
 and implementations may or may not work correctly.
 
-While all the other dependancies are optional, ffmpeg and ffprobe are
-highly recommended * FFMPEG and FFPROBE - Required for merging seperate
-video and audio files as well as for various post-processing tasks.
-Licence depends on the build * MUTAGEN - For embedding thumbnail in
-certain formats. Licenced under GPLv2+ * PYCRYPTODOMEX - For decrypting
-AES-128 HLS streams and various other data. Licenced under BSD2 *
-WEBSOCKETS - For downloading over websocket. Licenced under BSD3 *
-KEYRING - For decrypting cookies of chromium-based browsers on Linux.
-Licenced under MIT * ATOMICPARSLEY - For embedding thumbnail in mp4/m4a
-if mutagen is not present. Licenced under GPLv2+ * RTMPDUMP - For
-downloading rtmp streams. ffmpeg will be used as a fallback. Licenced
-under GPLv2+ * MPLAYER or MPV - For downloading rstp streams. ffmpeg
-will be used as a fallback. Licenced under GPLv2+ * PHANTOMJS - Used in
-extractors where javascript needs to be run. Licenced under BSD3 *
-SPONSKRUB - For using the now DEPRECATED sponskrub options. Licenced
-under GPLv3+ * Any external downloader that you want to use with
---downloader
+While all the other dependencies are optional, ffmpeg and ffprobe are
+highly recommended
+
+-   FFMPEG and FFPROBE - Required for merging separate video and audio
+    files as well as for various post-processing tasks. License depends
+    on the build
+-   MUTAGEN - For embedding thumbnail in certain formats. Licensed under
+    GPLv2+
+-   PYCRYPTODOMEX - For decrypting AES-128 HLS streams and various other
+    data. Licensed under BSD2
+-   WEBSOCKETS - For downloading over websocket. Licensed under BSD3
+-   SECRETSTORAGE - For accessing the Gnome keyring while decrypting
+    cookies of Chromium-based browsers on Linux. Licensed under BSD
+-   ATOMICPARSLEY - For embedding thumbnail in mp4/m4a if mutagen/ffmpeg
+    cannot. Licensed under GPLv2+
+-   BROTLI or BROTLICFFI - Brotli content encoding support. Both
+    licensed under MIT 1 2
+-   RTMPDUMP - For downloading rtmp streams. ffmpeg will be used as a
+    fallback. Licensed under GPLv2+
+-   MPLAYER or MPV - For downloading rstp streams. ffmpeg will be used
+    as a fallback. Licensed under GPLv2+
+-   PHANTOMJS - Used in extractors where javascript needs to be run.
+    Licensed under BSD3
+-   SPONSKRUB - For using the now DEPRECATED sponskrub options. Licensed
+    under GPLv3+
+-   Any external downloader that you want to use with --downloader
 
 To use or redistribute the dependencies, you must agree to their
 respective licensing terms.
 
-The windows releases are already built with the python interpreter,
-mutagen, pycryptodomex and websockets included.
+The Windows and MacOS standalone release binaries are already built with
+the python interpreter, mutagen, pycryptodomex and websockets included.
 
 NOTE: There are some regressions in newer ffmpeg versions that causes
 various issues when used alongside yt-dlp. Since ffmpeg is such an
-important dependancy, we provide custom builds with patches for these
+important dependency, we provide custom builds with patches for these
 issues at yt-dlp/FFmpeg-Builds. See the readme for details on the
-specifc issues solved by these builds
+specific issues solved by these builds
+
 
 COMPILE
 
 FOR WINDOWS: To build the Windows executable, you must have pyinstaller
-(and optionally mutagen, pycryptodomex, websockets). Once you have all
+(and any of yt-dlp's optional dependencies if needed). Once you have all
 the necessary dependencies installed, (optionally) build lazy extractors
 using devscripts/make_lazy_extractors.py, and then just run pyinst.py.
 The executable will be built for the same architecture (32/64 bit) as
@@ -406,6 +412,9 @@ only the binary without updating any of the additional files
 NOTE: In either platform, devscripts/update-version.py can be used to
 automatically update the version number
 
+You can also fork the project on github and run your fork's build
+workflow to automatically build a release
+
 
 
 USAGE AND OPTIONS
@@ -424,7 +433,7 @@ General Options:
                                      sure that you have sufficient permissions
                                      (run with sudo if needed)
     -i, --ignore-errors              Ignore download and postprocessing errors.
-                                     The download will be considered successfull
+                                     The download will be considered successful
                                      even if the postprocessing fails
     --no-abort-on-error              Continue with next video on download
                                      errors; e.g. to skip unavailable videos in
@@ -446,22 +455,34 @@ General Options:
                                      an error. The default value "fixup_error"
                                      repairs broken URLs, but emits an error if
                                      this is not possible instead of searching
-    --ignore-config                  Disable loading any configuration files
-                                     except the one provided by --config-
-                                     location. When given inside a configuration
-                                     file, no further configuration files are
-                                     loaded. Additionally, (for backward
-                                     compatibility) if this option is found
-                                     inside the system configuration file, the
-                                     user configuration is not loaded
-    --config-location PATH           Location of the main configuration file;
+    --ignore-config                  Don't load any more configuration files
+                                     except those given by --config-locations.
+                                     For backward compatibility, if this option
+                                     is found inside the system configuration
+                                     file, the user configuration is not loaded.
+                                     (Alias: --no-config)
+    --no-config-locations            Do not load any custom configuration files
+                                     (default). When given inside a
+                                     configuration file, ignore all previous
+                                     --config-locations defined in the current
+                                     file
+    --config-locations PATH          Location of the main configuration file;
                                      either the path to the config or its
-                                     containing directory
+                                     containing directory. Can be used multiple
+                                     times and inside other configuration files
     --flat-playlist                  Do not extract the videos of a playlist,
                                      only list them
     --no-flat-playlist               Extract the videos of a playlist
-    --mark-watched                   Mark videos watched (even with --simulate).
+    --live-from-start                Download livestreams from the start.
                                      Currently only supported for YouTube
+                                     (Experimental)
+    --no-live-from-start             Download livestreams from the current time
+                                     (default)
+    --wait-for-video MIN[-MAX]       Wait for scheduled streams to become
+                                     available. Pass the minimum number of
+                                     seconds (or range) to wait between retries
+    --no-wait-for-video              Do not wait for scheduled streams (default)
+    --mark-watched                   Mark videos watched (even with --simulate)
     --no-mark-watched                Do not mark videos watched (default)
     --no-colors                      Do not emit color codes in output
     --compat-options OPTS            Options that can help keep compatibility
@@ -476,8 +497,9 @@ Network Options:
     --proxy URL                      Use the specified HTTP/HTTPS/SOCKS proxy.
                                      To enable SOCKS proxy, specify a proper
                                      scheme. For example
-                                     socks5://127.0.0.1:1080/. Pass in an empty
-                                     string (--proxy "") for direct connection
+                                     socks5://user:pass@127.0.0.1:1080/. Pass in
+                                     an empty string (--proxy "") for direct
+                                     connection
     --socket-timeout SECONDS         Time to wait before giving up, in seconds
     --source-address IP              Client-side IP address to bind to
     -4, --force-ipv4                 Make all connections via IPv4
@@ -492,7 +514,7 @@ Geo-restriction:
                                      option is not present) is used for the
                                      actual downloading
     --geo-bypass                     Bypass geographic restriction via faking
-                                     X-Forwarded-For HTTP header
+                                     X-Forwarded-For HTTP header (default)
     --no-geo-bypass                  Do not bypass geographic restriction via
                                      faking X-Forwarded-For HTTP header
     --geo-bypass-country CODE        Force bypass geographic restriction with
@@ -515,12 +537,11 @@ Video Selection:
                                      specify range: "--playlist-items
                                      1-3,7,10-13", it will download the videos
                                      at index 1, 2, 3, 7, 10, 11, 12 and 13
-    --max-downloads NUMBER           Abort after downloading NUMBER files
     --min-filesize SIZE              Do not download any videos smaller than
                                      SIZE (e.g. 50k or 44.6m)
     --max-filesize SIZE              Do not download any videos larger than SIZE
                                      (e.g. 50k or 44.6m)
-    --date DATE                      Download only videos uploaded in this date.
+    --date DATE                      Download only videos uploaded on this date.
                                      The date can be "YYYYMMDD" or in the format
                                      "(now|today)[+-][0-9](day|week|month|year)(
                                      s)?"
@@ -558,20 +579,25 @@ Video Selection:
     --download-archive FILE          Download only videos not listed in the
                                      archive file. Record the IDs of all
                                      downloaded videos in it
+    --no-download-archive            Do not use archive file (default)
+    --max-downloads NUMBER           Abort after downloading NUMBER files
     --break-on-existing              Stop the download process when encountering
                                      a file that is in the archive
     --break-on-reject                Stop the download process when encountering
                                      a file that has been filtered out
+    --break-per-input                Make --break-on-existing and --break-on-
+                                     reject act only on the current input URL
+    --no-break-per-input             --break-on-existing and --break-on-reject
+                                     terminates the entire download queue
     --skip-playlist-after-errors N   Number of allowed failures until the rest
                                      of the playlist is skipped
-    --no-download-archive            Do not use archive file (default)
 
 
 Download Options:
 
     -N, --concurrent-fragments N     Number of fragments of a dash/hlsnative
-                                     video that should be download concurrently
-                                     (default is 1)
+                                     video that should be downloaded
+                                     concurrently (default is 1)
     -r, --limit-rate RATE            Maximum download rate in bytes per second
                                      (e.g. 50K or 4.2M)
     --throttled-rate RATE            Minimum download rate in bytes per second
@@ -579,6 +605,8 @@ Download Options:
                                      video data is re-extracted (e.g. 100K)
     -R, --retries RETRIES            Number of retries (default is 10), or
                                      "infinite"
+    --file-access-retries RETRIES    Number of times to retry on file access
+                                     error (default is 3), or "infinite"
     --fragment-retries RETRIES       Number of retries for a fragment (default
                                      is 10), or "infinite" (DASH, hlsnative and
                                      ISM)
@@ -644,15 +672,15 @@ Download Options:
 
 Filesystem Options:
 
-    -a, --batch-file FILE            File containing URLs to download ('-' for
+    -a, --batch-file FILE            File containing URLs to download ("-" for
                                      stdin), one URL per line. Lines starting
-                                     with '#', ';' or ']' are considered as
+                                     with "#", ";" or "]" are considered as
                                      comments and ignored
     --no-batch-file                  Do not read URLs from batch file (default)
     -P, --paths [TYPES:]PATH         The paths where the files should be
                                      downloaded. Specify the type of file and
                                      the path separated by a colon ":". All the
-                                     same types as --output are supported.
+                                     same TYPES as --output are supported.
                                      Additionally, you can also provide "home"
                                      (default) and "temp" paths. All
                                      intermediary files are first downloaded to
@@ -670,9 +698,9 @@ Filesystem Options:
                                      filenames
     --no-restrict-filenames          Allow Unicode characters, "&" and spaces in
                                      filenames (default)
-    --windows-filenames              Force filenames to be windows compatible
-    --no-windows-filenames           Make filenames windows compatible only if
-                                     using windows (default)
+    --windows-filenames              Force filenames to be Windows-compatible
+    --no-windows-filenames           Make filenames Windows-compatible only if
+                                     using Windows (default)
     --trim-filenames LENGTH          Limit the filename length (excluding
                                      extension) to the specified number of
                                      characters
@@ -705,11 +733,11 @@ Filesystem Options:
                                      json, --write-description etc. (default)
     --no-write-playlist-metafiles    Do not write playlist metadata when using
                                      --write-info-json, --write-description etc.
-    --clean-infojson                 Remove some private fields such as
+    --clean-info-json                Remove some private fields such as
                                      filenames from the infojson. Note that it
                                      could still contain some personal
                                      information (default)
-    --no-clean-infojson              Write all fields to the infojson
+    --no-clean-info-json             Write all fields to the infojson
     --write-comments                 Retrieve video comments to be placed in the
                                      infojson. The comments are fetched even
                                      without this option if the extraction is
@@ -720,20 +748,23 @@ Filesystem Options:
     --load-info-json FILE            JSON file containing the video information
                                      (created with the "--write-info-json"
                                      option)
-    --cookies FILE                   File to read cookies from and dump cookie
-                                     jar in
+    --cookies FILE                   Netscape formatted file to read cookies
+                                     from and dump cookie jar in
     --no-cookies                     Do not read/dump cookies from/to file
                                      (default)
-    --cookies-from-browser BROWSER[:PROFILE]
-                                     Load cookies from a user profile of the
-                                     given web browser. Currently supported
-                                     browsers are: brave, chrome, chromium,
-                                     edge, firefox, opera, safari, vivaldi. You
-                                     can specify the user profile name or
-                                     directory using "BROWSER:PROFILE_NAME" or
-                                     "BROWSER:PROFILE_PATH". If no profile is
-                                     given, the most recently accessed one is
-                                     used
+    --cookies-from-browser BROWSER[+KEYRING][:PROFILE]
+                                     The name of the browser and (optionally)
+                                     the name/path of the profile to load
+                                     cookies from, separated by a ":". Currently
+                                     supported browsers are: brave, chrome,
+                                     chromium, edge, firefox, opera, safari,
+                                     vivaldi. By default, the most recently
+                                     accessed profile is used. The keyring used
+                                     for decrypting Chromium cookies on Linux
+                                     can be (optionally) specified after the
+                                     browser name separated by a "+". Currently
+                                     supported keyrings are: basictext,
+                                     gnomekeyring, kwallet
     --no-cookies-from-browser        Do not load cookies from browser (default)
     --cache-dir DIR                  Location in the filesystem where youtube-dl
                                      can store some downloaded information (such
@@ -774,18 +805,28 @@ Verbosity and Simulation Options:
                                      anything to disk
     --no-simulate                    Download the video even if printing/listing
                                      options are used
-    --ignore-no-formats-error        Ignore "No video formats" error. Usefull
-                                     for extracting metadata even if the videos
-                                     are not actually available for download
+    --ignore-no-formats-error        Ignore "No video formats" error. Useful for
+                                     extracting metadata even if the videos are
+                                     not actually available for download
                                      (experimental)
     --no-ignore-no-formats-error     Throw error when no downloadable video
                                      formats are found (default)
     --skip-download                  Do not download the video but write all
                                      related files (Alias: --no-download)
-    -O, --print TEMPLATE             Quiet, but print the given fields for each
-                                     video. Simulate unless --no-simulate is
-                                     used. Either a field name or same syntax as
-                                     the output template can be used
+    -O, --print [WHEN:]TEMPLATE      Field name or output template to print to
+                                     screen, optionally prefixed with when to
+                                     print it, separated by a ":". Supported
+                                     values of "WHEN" are the same as that of
+                                     --use-postprocessor, and "video" (default).
+                                     Implies --quiet and --simulate (unless
+                                     --no-simulate is used). This option can be
+                                     used multiple times
+    --print-to-file [WHEN:]TEMPLATE FILE
+                                     Append given template to the file. The
+                                     values of WHEN and TEMPLATE are same as
+                                     that of --print. FILE uses the same syntax
+                                     as the output template. This option can be
+                                     used multiple times
     -j, --dump-json                  Quiet, but print JSON information for each
                                      video. Simulate unless --no-simulate is
                                      used. See "OUTPUT TEMPLATE" for a
@@ -810,7 +851,7 @@ Verbosity and Simulation Options:
                                      "postprocess:",  or "postprocess-title:".
                                      The video's fields are accessible under the
                                      "info" key and the progress attributes are
-                                     accessible under "progress" key. Eg:
+                                     accessible under "progress" key. E.g.:
                                      --console-title --progress-template
                                      "download-
                                      title:%(info.id)s-%(progress.eta)s"
@@ -826,13 +867,13 @@ Verbosity and Simulation Options:
 Workarounds:
 
     --encoding ENCODING              Force the specified encoding (experimental)
+    --legacy-server-connect          Explicitly allow HTTPS connection to
+                                     servers that do not support RFC 5746 secure
+                                     renegotiation
     --no-check-certificates          Suppress HTTPS certificate validation
     --prefer-insecure                Use an unencrypted connection to retrieve
                                      information about the video (Currently
                                      supported only for YouTube)
-    --user-agent UA                  Specify a custom user agent
-    --referer URL                    Specify a custom referer, use if the video
-                                     access is restricted to one domain
     --add-header FIELD:VALUE         Specify a custom HTTP header and its value,
                                      separated by a colon ":". You can use this
                                      option multiple times
@@ -878,10 +919,12 @@ Video Format Options:
                                      containers irrespective of quality
     --no-prefer-free-formats         Don't give any special preference to free
                                      containers (default)
-    --check-formats                  Check that the formats selected are
+    --check-formats                  Check that the selected formats are
                                      actually downloadable
-    --no-check-formats               Do not check that the formats selected are
+    --check-all-formats              Check all formats for whether they are
                                      actually downloadable
+    --no-check-formats               Do not check that the formats are actually
+                                     downloadable
     -F, --list-formats               List available formats of each video.
                                      Simulate unless --no-simulate is used
     --merge-output-format FORMAT     If a merge is required (e.g.
@@ -906,7 +949,7 @@ Subtitle Options:
                                      "ass/srt/best"
     --sub-langs LANGS                Languages of the subtitles to download (can
                                      be regex) or "all" separated by commas.
-                                     (Eg: --sub-langs en.*,ja) You can prefix
+                                     (Eg: --sub-langs "en.*,ja") You can prefix
                                      the language code with a "-" to exempt it
                                      from the requested languages. (Eg: --sub-
                                      langs all,-live_chat) Use --list-subs for a
@@ -942,9 +985,9 @@ Post-Processing Options:
     --audio-format FORMAT            Specify audio format to convert the audio
                                      to when -x is used. Currently supported
                                      formats are: best (default) or one of
-                                     best|aac|flac|mp3|m4a|opus|vorbis|wav
+                                     aac|flac|mp3|m4a|opus|vorbis|wav|alac
     --audio-quality QUALITY          Specify ffmpeg audio quality, insert a
-                                     value between 0 (better) and 9 (worse) for
+                                     value between 0 (best) and 10 (worst) for
                                      VBR or a specific bitrate like 128K
                                      (default 5)
     --remux-video FORMAT             Remux the video into another container if
@@ -994,15 +1037,20 @@ Post-Processing Options:
     --no-embed-subs                  Do not embed subtitles (default)
     --embed-thumbnail                Embed thumbnail in the video as cover art
     --no-embed-thumbnail             Do not embed thumbnail (default)
-    --embed-metadata                 Embed metadata to the video file. Also adds
-                                     chapters to file unless --no-add-chapters
-                                     is used (Alias: --add-metadata)
+    --embed-metadata                 Embed metadata to the video file. Also
+                                     embeds chapters/infojson if present unless
+                                     --no-embed-chapters/--no-embed-info-json
+                                     are used (Alias: --add-metadata)
     --no-embed-metadata              Do not add metadata to file (default)
                                      (Alias: --no-add-metadata)
     --embed-chapters                 Add chapter markers to the video file
                                      (Alias: --add-chapters)
     --no-embed-chapters              Do not add chapter markers (default)
                                      (Alias: --no-add-chapters)
+    --embed-info-json                Embed the infojson as an attachment to
+                                     mkv/mka video files
+    --no-embed-info-json             Do not embed the infojson as an attachment
+                                     to the video file
     --parse-metadata FROM:TO         Parse additional metadata like title/artist
                                      from other fields; see "MODIFYING METADATA"
                                      for details
@@ -1012,37 +1060,43 @@ Post-Processing Options:
                                      multiple times
     --xattrs                         Write metadata to the video file's xattrs
                                      (using dublin core and xdg standards)
+    --concat-playlist POLICY         Concatenate videos in a playlist. One of
+                                     "never", "always", or "multi_video"
+                                     (default; only when the videos form a
+                                     single show). All the video files must have
+                                     same codecs and number of streams to be
+                                     concatable. The "pl_video:" prefix can be
+                                     used with "--paths" and "--output" to set
+                                     the output filename for the split files.
+                                     See "OUTPUT TEMPLATE" for details
     --fixup POLICY                   Automatically correct known faults of the
                                      file. One of never (do nothing), warn (only
                                      emit a warning), detect_or_warn (the
                                      default; fix file if we can, warn
                                      otherwise), force (try fixing even if file
-                                     already exists
+                                     already exists)
     --ffmpeg-location PATH           Location of the ffmpeg binary; either the
                                      path to the binary or its containing
                                      directory
-    --exec CMD                       Execute a command on the file after
-                                     downloading and post-processing. Same
-                                     syntax as the output template can be used
-                                     to pass any field as arguments to the
-                                     command. An additional field "filepath"
+    --exec [WHEN:]CMD                Execute a command, optionally prefixed with
+                                     when to execute it (after_move if
+                                     unspecified), separated by a ":". Supported
+                                     values of "WHEN" are the same as that of
+                                     --use-postprocessor. Same syntax as the
+                                     output template can be used to pass any
+                                     field as arguments to the command. After
+                                     download, an additional field "filepath"
                                      that contains the final path of the
-                                     downloaded file is also available. If no
-                                     fields are passed, %(filepath)q is appended
-                                     to the end of the command. This option can
-                                     be used multiple times
-    --no-exec                        Remove any previously defined --exec
-    --exec-before-download CMD       Execute a command before the actual
-                                     download. The syntax is the same as --exec
-                                     but "filepath" is not available. This
+                                     downloaded file is also available, and if
+                                     no fields are passed, %(filepath)q is
+                                     appended to the end of the command. This
                                      option can be used multiple times
-    --no-exec-before-download        Remove any previously defined --exec-
-                                     before-download
+    --no-exec                        Remove any previously defined --exec
     --convert-subs FORMAT            Convert the subtitles to another format
                                      (currently supported: srt|vtt|ass|lrc)
                                      (Alias: --convert-subtitles)
     --convert-thumbnails FORMAT      Convert the thumbnails to another format
-                                     (currently supported: jpg|png)
+                                     (currently supported: jpg|png|webp)
     --split-chapters                 Split video into multiple files based on
                                      internal chapters. The "chapter:" prefix
                                      can be used with "--paths" and "--output"
@@ -1060,8 +1114,8 @@ Post-Processing Options:
     --no-remove-chapters             Do not remove any chapters from the file
                                      (default)
     --force-keyframes-at-cuts        Force keyframes around the chapters before
-                                     removing/splitting them. Requires a
-                                     reencode and thus is very slow, but the
+                                     removing/splitting them. Requires a re-
+                                     encode and thus is very slow, but the
                                      resulting video may have fewer artifacts
                                      around the cuts
     --no-force-keyframes-at-cuts     Do not force keyframes around the chapters
@@ -1069,17 +1123,21 @@ Post-Processing Options:
     --use-postprocessor NAME[:ARGS]  The (case sensitive) name of plugin
                                      postprocessors to be enabled, and
                                      (optionally) arguments to be passed to it,
-                                     seperated by a colon ":". ARGS are a
+                                     separated by a colon ":". ARGS are a
                                      semicolon ";" delimited list of NAME=VALUE.
                                      The "when" argument determines when the
                                      postprocessor is invoked. It can be one of
-                                     "pre_process" (after extraction),
-                                     "before_dl" (before video download),
-                                     "post_process" (after video download;
-                                     default) or "after_move" (after moving file
-                                     to their final locations). This option can
-                                     be used multiple times to add different
-                                     postprocessors
+                                     "pre_process" (after video extraction),
+                                     "after_filter" (after video passes filter),
+                                     "before_dl" (before each video download),
+                                     "post_process" (after each video download;
+                                     default), "after_move" (after moving video
+                                     file to it's final locations),
+                                     "after_video" (after downloading and
+                                     processing all formats of a video), or
+                                     "playlist" (at end of playlist). This
+                                     option can be used multiple times to add
+                                     different postprocessors
 
 
 SponsorBlock Options:
@@ -1090,19 +1148,22 @@ SponsorBlock Options:
 
     --sponsorblock-mark CATS         SponsorBlock categories to create chapters
                                      for, separated by commas. Available
-                                     categories are all, sponsor, intro, outro,
-                                     selfpromo, interaction, preview,
-                                     music_offtopic. You can prefix the category
-                                     with a "-" to exempt it. See https://wiki.s
-                                     ponsor.ajay.app/index.php/Segment_Categorie
-                                     s for description of the categories. Eg:
-                                     --sponsorblock-mark all,-preview
+                                     categories are all, default(=all), sponsor,
+                                     intro, outro, selfpromo, preview, filler,
+                                     interaction, music_offtopic, poi_highlight.
+                                     You can prefix the category with a "-" to
+                                     exempt it. See [1] for description of the
+                                     categories. Eg: --sponsorblock-mark
+                                     all,-preview [1] https://wiki.sponsor.ajay.
+                                     app/w/Segment_Categories
     --sponsorblock-remove CATS       SponsorBlock categories to be removed from
                                      the video file, separated by commas. If a
                                      category is present in both mark and
                                      remove, remove takes precedence. The syntax
                                      and available categories are the same as
-                                     for --sponsorblock-mark
+                                     for --sponsorblock-mark except that
+                                     "default" refers to "all,-filler" and
+                                     poi_highlight is not available
     --sponsorblock-chapter-title TEMPLATE
                                      The title template for SponsorBlock
                                      chapters created by --sponsorblock-mark.
@@ -1148,9 +1209,8 @@ locations:
 2.  PORTABLE CONFIGURATION: yt-dlp.conf in the same directory as the
     bundled binary. If you are running from source-code
     (<root dir>/yt_dlp/__main__.py), the root directory is used instead.
-3.  HOME CONFIGURATION: yt-dlp.conf in the home path given by
-    -P "home:<path>", or in the current directory if no such path is
-    given
+3.  HOME CONFIGURATION: yt-dlp.conf in the home path given by -P, or in
+    the current directory if no such path is given
 4.  USER CONFIGURATION:
     -   %XDG_CONFIG_HOME%/yt-dlp/config (recommended on Linux/macOS)
     -   %XDG_CONFIG_HOME%/yt-dlp.conf
@@ -1159,9 +1219,10 @@ locations:
     -   ~/yt-dlp.conf
     -   ~/yt-dlp.conf.txt
 
-    %XDG_CONFIG_HOME% defaults to ~/.config if undefined. On windows, ~
-    points to %HOME% if present, %USERPROFILE% (generally
-    C:\Users\<user name>) or %HOMEDRIVE%%HOMEPATH%.
+    %XDG_CONFIG_HOME% defaults to ~/.config if undefined. On windows,
+    %APPDATA% generally points to C:\Users\<user name>\AppData\Roaming
+    and ~ points to %HOME% if present, %USERPROFILE% (generally
+    C:\Users\<user name>), or %HOMEDRIVE%%HOMEPATH%
 5.  SYSTEM CONFIGURATION: /etc/yt-dlp.conf
 
 For example, with the following configuration file yt-dlp will always
@@ -1190,8 +1251,8 @@ You can use --ignore-config if you want to disable all configuration
 files for a particular yt-dlp run. If --ignore-config is found inside
 any configuration file, no further configuration will be loaded. For
 example, having the option in the portable configuration file prevents
-loading of user and system configurations. Additionally, (for backward
-compatibility) if --ignore-config is found inside the system
+loading of home, user, and system configurations. Additionally, (for
+backward compatibility) if --ignore-config is found inside the system
 configuration file, the user configuration is not loaded.
 
 Authentication with .netrc file
@@ -1244,7 +1305,7 @@ post-processing).
 
 It may however also contain special sequences that will be replaced when
 downloading each video. The special sequences may be formatted according
-to python string formatting operations. For example, %(NAME)s or
+to Python string formatting operations. For example, %(NAME)s or
 %(NAME)05d. To clarify, that is a percent symbol followed by a name in
 parentheses, followed by formatting operations.
 
@@ -1255,45 +1316,65 @@ separator. You can also do python slicing using :. Eg: %(tags.0)s,
 %(subtitles.en.-1.ext)s, %(id.3:7:-1)s, %(formats.:.format_id)s. %()s
 refers to the entire infodict. Note that all the fields that become
 available using this method are not listed below. Use -j to see such
-fields 1. ADDITION: Addition and subtraction of numeric fields can be
-done using + and - respectively. Eg: %(playlist_index+10)03d,
-%(n_entries+1-playlist_index)d 1. DATE/TIME FORMATTING: Date/time fields
-can be formatted according to strftime formatting by specifying it
-separated from the field name using a >. Eg: %(duration>%H-%M-%S)s,
-%(upload_date>%Y-%m-%d)s, %(epoch-3600>%H-%M-%S)s 1. ALTERNATIVES:
-Alternate fields can be specified seperated with a ,. Eg:
-%(release_date>%Y,upload_date>%Y|Unknown)s 1. DEFAULT: A literal default
-value can be specified for when the field is empty using a | seperator.
-This overrides --output-na-template. Eg: %(uploader|Unknown)s 1. MORE
-CONVERSIONS: In addition to the normal format types diouxXeEfFgGcrs, B,
-j, l, q can be used for converting to Bytes, Json, a comma seperated
-List (alternate form flag # makes it new line \n seperated) and a string
-Quoted for the terminal, respectively 1. UNICODE NORMALIZATION: The
-format type U can be used for NFC unicode normalization. The alternate
-form flag (#) changes the normalization to NFD and the conversion flag +
-can be used for NFKC/NFKD compatibility equivalence normalization. Eg:
-%(title)+.100U is NFKC
+fields
+
+1.  ADDITION: Addition and subtraction of numeric fields can be done
+    using + and - respectively. Eg: %(playlist_index+10)03d,
+    %(n_entries+1-playlist_index)d
+
+2.  DATE/TIME FORMATTING: Date/time fields can be formatted according to
+    strftime formatting by specifying it separated from the field name
+    using a >. Eg: %(duration>%H-%M-%S)s, %(upload_date>%Y-%m-%d)s,
+    %(epoch-3600>%H-%M-%S)s
+
+3.  ALTERNATIVES: Alternate fields can be specified separated with a ,.
+    Eg: %(release_date>%Y,upload_date>%Y|Unknown)s
+
+4.  REPLACEMENT: A replacement value can specified using a & separator.
+    If the field is _not_ empty, this replacement value will be used
+    instead of the actual field content. This is done after alternate
+    fields are considered; thus the replacement is used if _any_ of the
+    alternative fields is _not_ empty.
+
+5.  DEFAULT: A literal default value can be specified for when the field
+    is empty using a | separator. This overrides --output-na-template.
+    Eg: %(uploader|Unknown)s
+
+6.  MORE CONVERSIONS: In addition to the normal format types
+    diouxXeEfFgGcrs, B, j, l, q, D, S can be used for converting to
+    Bytes, Json (flag # for pretty-printing), a comma separated List
+    (flag # for \n newline-separated), a string Quoted for the terminal
+    (flag # to split a list into different arguments), to add Decimal
+    suffixes (Eg: 10M) (flag # to use 1024 as factor), and to Sanitize
+    as filename (flag # for restricted), respectively
+
+7.  UNICODE NORMALIZATION: The format type U can be used for NFC unicode
+    normalization. The alternate form flag (#) changes the normalization
+    to NFD and the conversion flag + can be used for NFKC/NFKD
+    compatibility equivalence normalization. Eg: %(title)+.100U is NFKC
 
 To summarize, the general syntax for a field is:
 
-    %(name[.keys][addition][>strf][,alternate][|default])[flags][width][.precision][length]type
+    %(name[.keys][addition][>strf][,alternate][&replacement][|default])[flags][width][.precision][length]type
 
 Additionally, you can set different output templates for the various
 metadata files separately from the general output template by specifying
 the type of file followed by the template separated by a colon :. The
 different file types supported are subtitle, thumbnail, description,
-annotation (deprecated), infojson, pl_thumbnail, pl_description,
-pl_infojson, chapter. For example,
--o '%(title)s.%(ext)s' -o 'thumbnail:%(title)s\%(title)s.%(ext)s' will
+annotation (deprecated), infojson, link, pl_thumbnail, pl_description,
+pl_infojson, chapter, pl_video. For example,
+-o "%(title)s.%(ext)s" -o "thumbnail:%(title)s\%(title)s.%(ext)s" will
 put the thumbnails in a folder with the same name as the video. If any
-of the templates (except default) is empty, that type of file will not
-be written. Eg: --write-thumbnail -o "thumbnail:" will write thumbnails
-only for playlists and not for video.
+of the templates is empty, that type of file will not be written. Eg:
+--write-thumbnail -o "thumbnail:" will write thumbnails only for
+playlists and not for video.
 
 The available fields are:
 
 -   id (string): Video identifier
 -   title (string): Video title
+-   fulltitle (string): Video title ignoring live timestamp and generic
+    title
 -   url (string): Video URL
 -   ext (string): Video filename extension
 -   alt_title (string): A secondary title of the video
@@ -1305,13 +1386,18 @@ The available fields are:
 -   timestamp (numeric): UNIX timestamp of the moment the video became
     available
 -   upload_date (string): Video upload date (YYYYMMDD)
--   release_date (string): The date (YYYYMMDD) when the video was
-    released
 -   release_timestamp (numeric): UNIX timestamp of the moment the video
     was released
+-   release_date (string): The date (YYYYMMDD) when the video was
+    released
+-   modified_timestamp (numeric): UNIX timestamp of the moment the video
+    was last modified
+-   modified_date (string): The date (YYYYMMDD) when the video was last
+    modified
 -   uploader_id (string): Nickname or id of the video uploader
 -   channel (string): Full name of the channel the video is uploaded on
 -   channel_id (string): Id of the channel
+-   channel_follower_count (numeric): Number of followers of the channel
 -   location (string): Physical location where the video was filmed
 -   duration (numeric): Length of the video in seconds
 -   duration_string (string): Length of the video (HH:mm:ss)
@@ -1326,16 +1412,16 @@ The available fields are:
     extractors, comments are only downloaded at the end, and so this
     field cannot be used)
 -   age_limit (numeric): Age restriction for the video (years)
--   live_status (string): One of 'is_live', 'was_live', 'is_upcoming',
-    'not_live'
+-   live_status (string): One of "is_live", "was_live", "is_upcoming",
+    "not_live"
 -   is_live (boolean): Whether this video is a live stream or a
     fixed-length video
 -   was_live (boolean): Whether this video was originally a live stream
 -   playable_in_embed (string): Whether this video is allowed to play in
     embedded players on other sites
--   availability (string): Whether the video is 'private',
-    'premium_only', 'subscriber_only', 'needs_auth', 'unlisted' or
-    'public'
+-   availability (string): Whether the video is "private",
+    "premium_only", "subscriber_only", "needs_auth", "unlisted" or
+    "public"
 -   start_time (numeric): Time in seconds where the reproduction should
     start, as specified in the URL
 -   end_time (numeric): Time in seconds where the reproduction should
@@ -1361,24 +1447,32 @@ The available fields are:
     download
 -   extractor (string): Name of the extractor
 -   extractor_key (string): Key name of the extractor
--   epoch (numeric): Unix epoch when creating the file
+-   epoch (numeric): Unix epoch of when the information extraction was
+    completed
 -   autonumber (numeric): Number that will be increased with each
     download, starting at --autonumber-start
--   n_entries (numeric): Total number of extracted items in the playlist
--   playlist (string): Name or id of the playlist that contains the
+-   video_autonumber (numeric): Number that will be increased with each
     video
+-   n_entries (numeric): Total number of extracted items in the playlist
+-   playlist_id (string): Identifier of the playlist that contains the
+    video
+-   playlist_title (string): Name of the playlist that contains the
+    video
+-   playlist (string): playlist_id or playlist_title
+-   playlist_count (numeric): Total number of items in the playlist. May
+    not be known if entire playlist is not extracted
 -   playlist_index (numeric): Index of the video in the playlist padded
     with leading zeros according the final index
 -   playlist_autonumber (numeric): Position of the video in the playlist
     download queue padded with leading zeros according to the total
     length of the playlist
--   playlist_id (string): Playlist identifier
--   playlist_title (string): Playlist title
 -   playlist_uploader (string): Full name of the playlist uploader
 -   playlist_uploader_id (string): Nickname or id of the playlist
     uploader
 -   webpage_url (string): A URL to the video webpage which if given to
     yt-dlp should allow to get the same result again
+-   webpage_url_basename (string): The basename of the webpage URL
+-   webpage_url_domain (string): The domain of the webpage URL
 -   original_url (string): The URL given by the user (or same as
     webpage_url for playlist entries)
 
@@ -1430,6 +1524,14 @@ Available only when used in --print:
 -   filename (string): Name of the video file. Note that the actual
     filename may be different due to post-processing. Use --exec echo to
     get the name after all postprocessing is complete
+-   formats_table (table): The video format table as printed by
+    --list-formats
+-   thumbnails_table (table): The thumbnail format table as printed by
+    --list-thumbnails
+-   subtitles_table (table): The subtitle format table as printed by
+    --list-subs
+-   automatic_captions_table (table): The automatic subtitle format
+    table as printed by --list-subs
 
 Available only in --sponsorblock-chapter-title:
 
@@ -1454,14 +1556,14 @@ sequences will be replaced with placeholder value provided with
 --output-na-placeholder (NA by default).
 
 TIP: Look at the -j output to identify which fields are available for
-the purticular URL
+the particular URL
 
 For numeric sequences you can use numeric related formatting, for
 example, %(view_count)05d will result in a string with view count padded
 with zeros up to 5 characters, like in 00042.
 
 Output templates can also contain arbitrary hierarchical path, e.g.
--o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' which will
+-o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" which will
 result in downloading each video in a directory corresponding to this
 path template. Any missing directory will be automatically created for
 you.
@@ -1474,7 +1576,7 @@ The current default template is %(title)s [%(id)s].%(ext)s.
 In some cases, you don't want special characters such as 中, spaces, or
 &, such as when transferring the downloaded filename to a Windows system
 or the filename through an 8bit-unsafe channel. In these cases, add the
---restrict-filenames flag to get a shorter title:
+--restrict-filenames flag to get a shorter title.
 
 Output template and Windows batch files
 
@@ -1487,28 +1589,39 @@ should stay intact: -o "C:\%HOMEPATH%\Desktop\%%(title)s.%%(ext)s".
 
 Output template examples
 
-Note that on Windows you need to use double quotes instead of single.
+    $ yt-dlp --get-filename -o "test video.%(ext)s" BaW_jenozKc
+    test video.webm    # Literal name with correct extension
 
-    $ yt-dlp --get-filename -o '%(title)s.%(ext)s' BaW_jenozKc
-    youtube-dl test video ''_ä↭𝕐.mp4    # All kinds of weird characters
+    $ yt-dlp --get-filename -o "%(title)s.%(ext)s" BaW_jenozKc
+    youtube-dl test video ''_ä↭𝕐.webm    # All kinds of weird characters
 
-    $ yt-dlp --get-filename -o '%(title)s.%(ext)s' BaW_jenozKc --restrict-filenames
-    youtube-dl_test_video_.mp4          # A simple file name
+    $ yt-dlp --get-filename -o "%(title)s.%(ext)s" BaW_jenozKc --restrict-filenames
+    youtube-dl_test_video_.webm    # Restricted file name
 
     # Download YouTube playlist videos in separate directory indexed by video order in a playlist
-    $ yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re
+    $ yt-dlp -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re"
 
     # Download YouTube playlist videos in separate directories according to their uploaded year
-    $ yt-dlp -o '%(upload_date>%Y)s/%(title)s.%(ext)s' https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re
+    $ yt-dlp -o "%(upload_date>%Y)s/%(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re"
+
+    # Prefix playlist index with " - " separator, but only if it is available
+    $ yt-dlp -o '%(playlist_index|)s%(playlist_index& - |)s%(title)s.%(ext)s' BaW_jenozKc "https://www.youtube.com/user/TheLinuxFoundation/playlists"
 
     # Download all playlists of YouTube channel/user keeping each playlist in separate directory:
-    $ yt-dlp -o '%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' https://www.youtube.com/user/TheLinuxFoundation/playlists
+    $ yt-dlp -o "%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "https://www.youtube.com/user/TheLinuxFoundation/playlists"
 
     # Download Udemy course keeping each chapter in separate directory under MyVideos directory in your home
-    $ yt-dlp -u user -p password -P '~/MyVideos' -o '%(playlist)s/%(chapter_number)s - %(chapter)s/%(title)s.%(ext)s' https://www.udemy.com/java-tutorial/
+    $ yt-dlp -u user -p password -P "~/MyVideos" -o "%(playlist)s/%(chapter_number)s - %(chapter)s/%(title)s.%(ext)s" "https://www.udemy.com/java-tutorial"
 
     # Download entire series season keeping each series and each season in separate directory under C:/MyVideos
-    $ yt-dlp -P "C:/MyVideos" -o "%(series)s/%(season_number)s - %(season)s/%(episode_number)s - %(episode)s.%(ext)s" https://videomore.ru/kino_v_detalayah/5_sezon/367617
+    $ yt-dlp -P "C:/MyVideos" -o "%(series)s/%(season_number)s - %(season)s/%(episode_number)s - %(episode)s.%(ext)s" "https://videomore.ru/kino_v_detalayah/5_sezon/367617"
+
+    # Download video as "C:\MyVideos\uploader\title.ext", subtitles as "C:\MyVideos\subs\uploader\title.ext"
+    # and put all temporary files in "C:\MyVideos\tmp"
+    $ yt-dlp -P "C:/MyVideos" -P "temp:tmp" -P "subtitle:subs" -o "%(uploader)s/%(title)s.%(ext)s" BaW_jenoz --write-subs
+
+    # Download video as "C:\MyVideos\uploader\title.ext" and subtitles as "C:\MyVideos\uploader\subs\title.ext"
+    $ yt-dlp -P "C:/MyVideos" -o "%(uploader)s/%(title)s.%(ext)s" -o "subtitle:%(uploader)s/subs/%(title)s.%(ext)s" BaW_jenozKc --write-subs
 
     # Stream the video being downloaded to stdout
     $ yt-dlp -o - BaW_jenozKc
@@ -1550,33 +1663,36 @@ of a particular file extension served as a single file, e.g. -f webm
 will download the best quality format with the webm extension served as
 a single file.
 
+You can use -f - to interactively provide the format selector _for each
+video_
+
 You can also use special names to select particular edge case formats:
 
--   all: Select all formats
--   mergeall: Select and merge all formats (Must be used with
+-   all: Select ALL FORMATS separately
+-   mergeall: Select and MERGE ALL FORMATS (Must be used with
     --audio-multistreams, --video-multistreams or both)
--   b*, best*: Select the best quality format irrespective of whether it
-    contains video or audio
--   w*, worst*: Select the worst quality format irrespective of whether
-    it contains video or audio
--   b, best: Select the best quality format that contains both video and
+-   b*, best*: Select the best quality format that CONTAINS EITHER a
+    video or an audio
+-   b, best: Select the best quality format that CONTAINS BOTH video and
     audio. Equivalent to best*[vcodec!=none][acodec!=none]
+-   bv, bestvideo: Select the best quality VIDEO-ONLY format. Equivalent
+    to best*[acodec=none]
+-   bv*, bestvideo*: Select the best quality format that CONTAINS VIDEO.
+    It may also contain audio. Equivalent to best*[vcodec!=none]
+-   ba, bestaudio: Select the best quality AUDIO-ONLY format. Equivalent
+    to best*[vcodec=none]
+-   ba*, bestaudio*: Select the best quality format that CONTAINS AUDIO.
+    It may also contain video. Equivalent to best*[acodec!=none]
+-   w*, worst*: Select the worst quality format that contains either a
+    video or an audio
 -   w, worst: Select the worst quality format that contains both video
     and audio. Equivalent to worst*[vcodec!=none][acodec!=none]
--   bv, bestvideo: Select the best quality video-only format. Equivalent
-    to best*[acodec=none]
 -   wv, worstvideo: Select the worst quality video-only format.
     Equivalent to worst*[acodec=none]
--   bv*, bestvideo*: Select the best quality format that contains video.
-    It may also contain audio. Equivalent to best*[vcodec!=none]
 -   wv*, worstvideo*: Select the worst quality format that contains
     video. It may also contain audio. Equivalent to worst*[vcodec!=none]
--   ba, bestaudio: Select the best quality audio-only format. Equivalent
-    to best*[vcodec=none]
 -   wa, worstaudio: Select the worst quality audio-only format.
     Equivalent to worst*[vcodec=none]
--   ba*, bestaudio*: Select the best quality format that contains audio.
-    It may also contain video. Equivalent to best*[acodec!=none]
 -   wa*, worstaudio*: Select the worst quality format that contains
     audio. It may also contain video. Equivalent to worst*[acodec!=none]
 
@@ -1649,7 +1765,8 @@ The following numeric meta fields can be used with comparisons <, <=, >,
 -   fps: Frame rate
 
 Also filtering work for comparisons = (equals), ^= (starts with), $=
-(ends with), *= (contains) and following string meta fields:
+(ends with), *= (contains), ~= (matches regex) and following string meta
+fields:
 
 -   ext: File extension
 -   acodec: Name of the audio codec in use
@@ -1662,7 +1779,10 @@ Also filtering work for comparisons = (equals), ^= (starts with), $=
 -   language: Language code
 
 Any string comparison may be prefixed with negation ! in order to
-produce an opposite comparison, e.g. !*= (does not contain).
+produce an opposite comparison, e.g. !*= (does not contain). The
+comparand of a string comparison needs to be quoted with either double
+or single quotes if it contains spaces or special characters other than
+._-.
 
 Note that none of the aforementioned meta fields are guaranteed to be
 present since this solely depends on the metadata obtained by particular
@@ -1678,8 +1798,8 @@ filter. For example, -f "all[vcodec=none]" selects all audio-only
 formats.
 
 Format selectors can also be grouped using parentheses, for example if
-you want to download the best mp4 and webm formats with a height lower
-than 480 you can use -f '(mp4,webm)[height<480]'.
+you want to download the best pre-merged mp4 and webm formats with a
+height lower than 480 you can use -f "(mp4,webm)[height<480]".
 
 
 Sorting Formats
@@ -1692,26 +1812,25 @@ The available fields are:
 
 -   hasvid: Gives priority to formats that has a video stream
 -   hasaud: Gives priority to formats that has a audio stream
--   ie_pref: The format preference as given by the extractor
--   lang: Language preference as given by the extractor
--   quality: The quality of the format as given by the extractor
--   source: Preference of the source as given by the extractor
+-   ie_pref: The format preference
+-   lang: The language preference
+-   quality: The quality of the format
+-   source: The preference of the source
 -   proto: Protocol used for download (https/ftps > http/ftp >
-    m3u8_native/m3u8 > http_dash_segments> websocket_frag > other >
-    mms/rtsp > unknown > f4f/f4m)
+    m3u8_native/m3u8 > http_dash_segments> websocket_frag > mms/rtsp >
+    f4f/f4m)
 -   vcodec: Video Codec (av01 > vp9.2 > vp9 > h265 > h264 > vp8 > h263 >
-    theora > other > unknown)
--   acodec: Audio Codec (opus > vorbis > aac > mp4a > mp3 > ac3 > dts >
-    other > unknown)
+    theora > other)
+-   acodec: Audio Codec (flac/alac > wav/aiff > opus > vorbis > aac >
+    mp4a > mp3 > eac3 > ac3 > dts > other)
 -   codec: Equivalent to vcodec,acodec
--   vext: Video Extension (mp4 > webm > flv > other > unknown). If
-    --prefer-free-formats is used, webm is prefered.
--   aext: Audio Extension (m4a > aac > mp3 > ogg > opus > webm > other >
-    unknown). If --prefer-free-formats is used, the order changes to
-    opus > ogg > webm > m4a > mp3 > aac.
+-   vext: Video Extension (mp4 > webm > flv > other). If
+    --prefer-free-formats is used, webm is preferred.
+-   aext: Audio Extension (m4a > aac > mp3 > ogg > opus > webm > other).
+    If --prefer-free-formats is used, the order changes to opus > ogg >
+    webm > m4a > mp3 > aac.
 -   ext: Equivalent to vext,aext
--   filesize: Exact filesize, if know in advance. This will be
-    unavailable for mu38 and DASH formats.
+-   filesize: Exact filesize, if known in advance
 -   fs_approx: Approximate filesize calculated from the manifests
 -   size: Exact filesize if available, otherwise approximate filesize
 -   height: Height of video
@@ -1752,9 +1871,9 @@ lang,quality,res,fps,hdr:12,codec:vp9.2,size,br,asr,proto,ext,hasaud,source,id.
 The extractors may override this default order, but they cannot override
 the user-provided order.
 
-Note that the default has codec:vp9.2; i.e. av1 is not prefered.
+Note that the default has codec:vp9.2; i.e. av1 is not preferred.
 Similarly, the default for hdr is hdr:12; i.e. dolby vision is not
-prefered. These choices are made since DV and AV1 formats are not yet
+preferred. These choices are made since DV and AV1 formats are not yet
 fully compatible with most devices. This may be changed in the future as
 more devices become capable of smoothly playing back these formats.
 
@@ -1770,16 +1889,13 @@ TIP: You can use the -v -F to see how the formats have been sorted
 
 Format Selection examples
 
-Note that on Windows you may need to use double quotes instead of
-single.
-
     # Download and merge the best video-only format and the best audio-only format,
     # or download the best combined format if video-only format is not available
-    $ yt-dlp -f 'bv+ba/b'
+    $ yt-dlp -f "bv+ba/b"
 
     # Download best format that contains video,
     # and if it doesn't already have an audio stream, merge it with best audio-only format
-    $ yt-dlp -f 'bv*+ba/b'
+    $ yt-dlp -f "bv*+ba/b"
 
     # Same as above
     $ yt-dlp
@@ -1787,89 +1903,90 @@ single.
     # Download the best video-only format and the best audio-only format without merging them
     # For this case, an output template should be used since
     # by default, bestvideo and bestaudio will have the same file name.
-    $ yt-dlp -f 'bv,ba' -o '%(title)s.f%(format_id)s.%(ext)s'
+    $ yt-dlp -f "bv,ba" -o "%(title)s.f%(format_id)s.%(ext)s"
 
     # Download and merge the best format that has a video stream,
     # and all audio-only formats into one file
-    $ yt-dlp -f 'bv*+mergeall[vcodec=none]' --audio-multistreams
+    $ yt-dlp -f "bv*+mergeall[vcodec=none]" --audio-multistreams
 
     # Download and merge the best format that has a video stream,
     # and the best 2 audio-only formats into one file
-    $ yt-dlp -f 'bv*+ba+ba.2' --audio-multistreams
+    $ yt-dlp -f "bv*+ba+ba.2" --audio-multistreams
 
 
     # The following examples show the old method (without -S) of format selection
     # and how to use -S to achieve a similar but (generally) better result
 
     # Download the worst video available (old method)
-    $ yt-dlp -f 'wv*+wa/w'
+    $ yt-dlp -f "wv*+wa/w"
 
     # Download the best video available but with the smallest resolution
-    $ yt-dlp -S '+res'
+    $ yt-dlp -S "+res"
 
     # Download the smallest video available
-    $ yt-dlp -S '+size,+br'
+    $ yt-dlp -S "+size,+br"
 
 
 
     # Download the best mp4 video available, or the best video if no mp4 available
-    $ yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b'
+    $ yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
 
     # Download the best video with the best extension
     # (For video, mp4 > webm > flv. For audio, m4a > aac > mp3 ...)
-    $ yt-dlp -S 'ext'
+    $ yt-dlp -S "ext"
 
 
 
     # Download the best video available but no better than 480p,
     # or the worst video if there is no video under 480p
-    $ yt-dlp -f 'bv*[height<=480]+ba/b[height<=480] / wv*+ba/w'
+    $ yt-dlp -f "bv*[height<=480]+ba/b[height<=480] / wv*+ba/w"
 
     # Download the best video available with the largest height but no better than 480p,
     # or the best video with the smallest resolution if there is no video under 480p
-    $ yt-dlp -S 'height:480'
+    $ yt-dlp -S "height:480"
 
     # Download the best video available with the largest resolution but no better than 480p,
     # or the best video with the smallest resolution if there is no video under 480p
     # Resolution is determined by using the smallest dimension.
     # So this works correctly for vertical videos as well
-    $ yt-dlp -S 'res:480'
+    $ yt-dlp -S "res:480"
 
 
 
     # Download the best video (that also has audio) but no bigger than 50 MB,
     # or the worst video (that also has audio) if there is no video under 50 MB
-    $ yt-dlp -f 'b[filesize<50M] / w'
+    $ yt-dlp -f "b[filesize<50M] / w"
 
     # Download largest video (that also has audio) but no bigger than 50 MB,
     # or the smallest video (that also has audio) if there is no video under 50 MB
-    $ yt-dlp -f 'b' -S 'filesize:50M'
+    $ yt-dlp -f "b" -S "filesize:50M"
 
     # Download best video (that also has audio) that is closest in size to 50 MB
-    $ yt-dlp -f 'b' -S 'filesize~50M'
+    $ yt-dlp -f "b" -S "filesize~50M"
 
 
 
     # Download best video available via direct link over HTTP/HTTPS protocol,
     # or the best video available via any protocol if there is no such video
-    $ yt-dlp -f '(bv*+ba/b)[protocol^=http][protocol!*=dash] / (bv*+ba/b)'
+    $ yt-dlp -f "(bv*+ba/b)[protocol^=http][protocol!*=dash] / (bv*+ba/b)"
 
     # Download best video available via the best protocol
     # (https/ftps > http/ftp > m3u8_native > m3u8 > http_dash_segments ...)
-    $ yt-dlp -S 'proto'
+    $ yt-dlp -S "proto"
 
 
 
-    # Download the best video with h264 codec, or the best video if there is no such video
-    $ yt-dlp -f '(bv*+ba/b)[vcodec^=avc1] / (bv*+ba/b)'
+    # Download the best video with either h264 or h265 codec,
+    # or the best video if there is no such video
+    $ yt-dlp -f "(bv*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv*+ba/b)"
 
     # Download the best video with best codec no better than h264,
     # or the best video with worst codec if there is no such video
-    $ yt-dlp -S 'codec:h264'
+    $ yt-dlp -S "codec:h264"
 
     # Download the best video with worst codec no worse than h264,
     # or the best video with best codec if there is no such video
-    $ yt-dlp -S '+codec:h264'
+    $ yt-dlp -S "+codec:h264"
 
 
 
@@ -1877,26 +1994,26 @@ single.
 
     # Download the best video no better than 720p preferring framerate greater than 30,
     # or the worst video (still preferring framerate greater than 30) if there is no such video
-    $ yt-dlp -f '((bv*[fps>30]/bv*)[height<=720]/(wv*[fps>30]/wv*)) + ba / (b[fps>30]/b)[height<=720]/(w[fps>30]/w)'
+    $ yt-dlp -f "((bv*[fps>30]/bv*)[height<=720]/(wv*[fps>30]/wv*)) + ba / (b[fps>30]/b)[height<=720]/(w[fps>30]/w)"
 
     # Download the video with the largest resolution no better than 720p,
     # or the video with the smallest resolution available if there is no such video,
     # preferring larger framerate for formats with the same resolution
-    $ yt-dlp -S 'res:720,fps'
+    $ yt-dlp -S "res:720,fps"
 
 
 
     # Download the video with smallest resolution no worse than 480p,
     # or the video with the largest resolution available if there is no such video,
     # preferring better codec and then larger total bitrate for the same resolution
-    $ yt-dlp -S '+res:480,codec,br'
+    $ yt-dlp -S "+res:480,codec,br"
 
 
 
 MODIFYING METADATA
 
 
-The metadata obtained the the extractors can be modified by using
+The metadata obtained by the extractors can be modified by using
 --parse-metadata and --replace-in-metadata
 
 --replace-in-metadata FIELDS REGEX REPLACE is used to replace text in
@@ -1925,8 +2042,13 @@ use this to change the metadata that is embedded in the media file. To
 do this, set the value of the corresponding field with a meta_ prefix.
 For example, any value you set to meta_description field will be added
 to the description field in the file. For example, you can use this to
-set a different "description" and "synopsis". Any value set to the meta_
-field will overwrite all default values.
+set a different "description" and "synopsis". To modify the metadata of
+individual streams, use the meta<n>_ prefix (Eg: meta1_language). Any
+value set to the meta_ field will overwrite all default values.
+
+NOTE: Metadata modification happens before format selection,
+post-extraction and other post-processing operations. Some fields may be
+added or changed during these steps, overriding your changes.
 
 For reference, these are the fields yt-dlp adds by default to the file
 metadata:
@@ -1947,30 +2069,30 @@ metadata:
   season_number             season_number
   episode_id                episode or episode_id
   episode_sort              episode_number
-  language of each stream   From the format's language
+  language of each stream   the format's language
 
 NOTE: The file format may not support some of these fields
 
 
 Modifying metadata examples
 
-Note that on Windows you may need to use double quotes instead of
-single.
-
     # Interpret the title as "Artist - Title"
-    $ yt-dlp --parse-metadata 'title:%(artist)s - %(title)s'
+    $ yt-dlp --parse-metadata "title:%(artist)s - %(title)s"
 
     # Regex example
-    $ yt-dlp --parse-metadata 'description:Artist - (?P<artist>.+)'
+    $ yt-dlp --parse-metadata "description:Artist - (?P<artist>.+)"
 
     # Set title as "Series name S01E05"
-    $ yt-dlp --parse-metadata '%(series)s S%(season_number)02dE%(episode_number)02d:%(title)s'
+    $ yt-dlp --parse-metadata "%(series)s S%(season_number)02dE%(episode_number)02d:%(title)s"
 
     # Set "comment" field in video metadata using description instead of webpage_url
-    $ yt-dlp --parse-metadata 'description:(?s)(?P<meta_comment>.+)' --add-metadata
+    $ yt-dlp --parse-metadata "description:(?s)(?P<meta_comment>.+)" --add-metadata
+
+    # Remove "formats" field from the infojson by setting it to an empty string
+    $ yt-dlp --parse-metadata ":(?P<formats>)" -j
 
     # Replace all spaces and "_" in title and uploader with a `-`
-    $ yt-dlp --replace-in-metadata 'title,uploader' '[ _]' '-'
+    $ yt-dlp --replace-in-metadata "title,uploader" "[ _]" "-"
 
 
 
@@ -1978,41 +2100,110 @@ EXTRACTOR ARGUMENTS
 
 
 Some extractors accept additional arguments which can be passed using
---extractor-args KEY:ARGS. ARGS is a ; (semicolon) seperated string of
+--extractor-args KEY:ARGS. ARGS is a ; (semicolon) separated string of
 ARG=VAL1,VAL2. Eg:
---extractor-args "youtube:player_client=android_agegate,web;include_live_dash" --extractor-args "funimation:version=uncut"
+--extractor-args "youtube:player-client=android_agegate,web;include_live_dash" --extractor-args "funimation:version=uncut"
 
-The following extractors use this feature: * YOUTUBE * skip: hls or dash
-(or both) to skip download of the respective manifests * player_client:
-Clients to extract video data from. The main clients are web, android,
-ios, mweb. These also have _music, _embedded, _agegate, and _creator
-variants (Eg: web_embedded) (mweb has only _agegate). By default,
-android,web is used, but the agegate and creator variants are added as
-required for age-gated videos. Similarly the music variants are added
-for music.youtube.com urls. You can also use all to use all the clients
-* player_skip: Skip some network requests that are generally needed for
-robust extraction. One or more of configs (skip client configs), webpage
-(skip initial webpage), js (skip js player). While these options can
-help reduce the number of requests needed or avoid some rate-limiting,
-they could cause some issues. See #860 for more details *
-include_live_dash: Include live dash formats (These formats don't
-download properly) * comment_sort: top or new (default) - choose comment
-sorting mode (on YouTube's side). * max_comments: Maximum amount of
-comments to download (default all). * max_comment_depth: Maximum depth
-for nested comments. YouTube supports depths 1 or 2 (default). *
-YOUTUBETAB (YouTube playlists, channels, feeds, etc.) * skip: One or
-more of webpage (skip initial webpage download), authcheck (allow the
-download of playlists requiring authentication when no initial webpage
-is downloaded. This may cause unwanted behavior, see #1122 for more
-details)
+The following extractors use this feature:
 
--   FUNIMATION
-    -   language: Languages to extract. Eg:
-        funimation:language=english,japanese
-    -   version: The video version to extract - uncut or simulcast
--   VIKICHANNEL
-    -   video_types: Types of videos to download - one or more of
-        episodes, movies, clips, trailers
+youtube
+
+-   skip: hls or dash (or both) to skip download of the respective
+    manifests
+-   player_client: Clients to extract video data from. The main clients
+    are web, android, ios, mweb. These also have _music, _embedded,
+    _agegate, and _creator variants (Eg: web_embedded) (mweb has only
+    _agegate). By default, android,web is used, but the agegate and
+    creator variants are added as required for age-gated videos.
+    Similarly the music variants are added for music.youtube.com urls.
+    You can also use all to use all the clients, and default for the
+    default clients.
+-   player_skip: Skip some network requests that are generally needed
+    for robust extraction. One or more of configs (skip client configs),
+    webpage (skip initial webpage), js (skip js player). While these
+    options can help reduce the number of requests needed or avoid some
+    rate-limiting, they could cause some issues. See #860 for more
+    details
+-   include_live_dash: Include live dash formats even without
+    --live-from-start (These formats don't download properly)
+-   comment_sort: top or new (default) - choose comment sorting mode (on
+    YouTube's side)
+-   max_comments: Limit the amount of comments to gather.
+    Comma-separated list of integers representing
+    max-comments,max-parents,max-replies,max-replies-per-thread. Default
+    is all,all,all,all.
+    -   E.g. all,all,1000,10 will get a maximum of 1000 replies total,
+        with up to 10 replies per thread. 1000,all,100 will get a
+        maximum of 1000 comments, with a maximum of 100 replies total.
+-   max_comment_depth Maximum depth for nested comments. YouTube
+    supports depths 1 or 2 (default)
+    -   DEPRECATED: Set max-replies to 0 or all in max_comments instead
+        (e.g. max_comments=all,all,0 to get no replies)
+
+youtubetab (YouTube playlists, channels, feeds, etc.)
+
+-   skip: One or more of webpage (skip initial webpage download),
+    authcheck (allow the download of playlists requiring authentication
+    when no initial webpage is downloaded. This may cause unwanted
+    behavior, see #1122 for more details)
+-   approximate_date: Extract approximate upload_date in flat-playlist.
+    This may cause date-based filters to be slightly off
+
+funimation
+
+-   language: Languages to extract. Eg:
+    funimation:language=english,japanese
+-   version: The video version to extract - uncut or simulcast
+
+crunchyroll
+
+-   language: Languages to extract. Eg: crunchyroll:language=jaJp
+-   hardsub: Which hard-sub versions to extract. Eg:
+    crunchyroll:hardsub=None,enUS
+
+crunchyroll:beta
+
+-   format: Which stream type(s) to extract. Default is adaptive_hls Eg:
+    crunchyrollbeta:format=vo_adaptive_hls
+    -   Potentially useful values include adaptive_hls, adaptive_dash,
+        vo_adaptive_hls, vo_adaptive_dash, download_hls, trailer_hls,
+        trailer_dash
+-   hardsub: Preference order for which hardsub versions to extract.
+    Default is None (no hardsubs). Eg:
+    crunchyrollbeta:hardsub=en-US,None
+
+vikichannel
+
+-   video_types: Types of videos to download - one or more of episodes,
+    movies, clips, trailers
+
+youtubewebarchive
+
+-   check_all: Try to check more at the cost of more requests. One or
+    more of thumbnails, captures
+
+gamejolt
+
+-   comment_sort: hot (default), you (cookies needed), top, new - choose
+    comment sorting mode (on GameJolt's side)
+
+hotstar
+
+-   res: resolution to ignore - one or more of sd, hd, fhd
+-   vcodec: vcodec to ignore - one or more of h264, h265, dvh265
+-   dr: dynamic range to ignore - one or more of sdr, hdr10, dv
+
+tiktok
+
+-   app_version: App version to call mobile APIs with - should be set
+    along with manifest_app_version. (e.g. 20.2.1)
+-   manifest_app_version: Numeric app version to call mobile APIs with.
+    (e.g. 221)
+
+rokfinchannel
+
+-   tab: Which tab to download. One of new, top, videos, podcasts,
+    streams, stacks. (E.g. rokfinchannel:tab=streams)
 
 NOTE: These options may be changed/removed in the future without concern
 for backward compatibility
@@ -2058,29 +2249,24 @@ you can reliably reproduce and parse.
 From a Python program, you can embed yt-dlp in a more powerful fashion,
 like this:
 
-    import yt_dlp
+    from yt_dlp import YoutubeDL
 
-    ydl_opts = {}
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    ydl_opts = {'format': 'bestaudio'}
+    with YoutubeDL(ydl_opts) as ydl:
         ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
 
 Most likely, you'll want to use various options. For a list of options
 available, have a look at yt_dlp/YoutubeDL.py.
 
-Here's a more complete example of a program that outputs only errors
-(and a short message after the download is finished), converts the video
-to an mp3 file, implements a custom postprocessor and prints the final
-info_dict as json:
+Here's a more complete example demonstrating various functionality:
 
     import json
-
     import yt_dlp
-    from yt_dlp.postprocessor.common import PostProcessor
 
 
     class MyLogger:
         def debug(self, msg):
-            # For compatability with youtube-dl, both debug and info are passed into debug
+            # For compatibility with youtube-dl, both debug and info are passed into debug
             # You can distinguish them by the prefix '[debug] '
             if msg.startswith('[debug] '):
                 pass
@@ -2097,35 +2283,72 @@ info_dict as json:
             print(msg)
 
 
-    class MyCustomPP(PostProcessor):
+    # ℹ️ See the docstring of yt_dlp.postprocessor.common.PostProcessor
+    class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
+        # ℹ️ See docstring of yt_dlp.postprocessor.common.PostProcessor.run
         def run(self, info):
             self.to_screen('Doing stuff')
             return [], info
 
 
+    # ℹ️ See "progress_hooks" in the docstring of yt_dlp.YoutubeDL
     def my_hook(d):
         if d['status'] == 'finished':
             print('Done downloading, now converting ...')
 
 
+    def format_selector(ctx):
+        """ Select the best video and the best audio that won't result in an mkv.
+        This is just an example and does not handle all cases """
+
+        # formats are already sorted worst to best
+        formats = ctx.get('formats')[::-1]
+
+        # acodec='none' means there is no audio
+        best_video = next(f for f in formats
+                          if f['vcodec'] != 'none' and f['acodec'] == 'none')
+
+        # find compatible audio extension
+        audio_ext = {'mp4': 'm4a', 'webm': 'webm'}[best_video['ext']]
+        # vcodec='none' means there is no video
+        best_audio = next(f for f in formats if (
+            f['acodec'] != 'none' and f['vcodec'] == 'none' and f['ext'] == audio_ext))
+
+        yield {
+            # These are the minimum required fields for a merged format
+            'format_id': f'{best_video["format_id"]}+{best_audio["format_id"]}',
+            'ext': best_video['ext'],
+            'requested_formats': [best_video, best_audio],
+            # Must be + separated list of protocols
+            'protocol': f'{best_video["protocol"]}+{best_audio["protocol"]}'
+        }
+
+
+    # ℹ️ See docstring of yt_dlp.YoutubeDL for a description of the options
     ydl_opts = {
-        'format': 'bestaudio/best',
+        'format': format_selector,
         'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
+            # Embed metadata in video using ffmpeg.
+            # ℹ️ See yt_dlp.postprocessor.FFmpegMetadataPP for the arguments it accepts
+            'key': 'FFmpegMetadata',
+            'add_chapters': True,
+            'add_metadata': True,
         }],
         'logger': MyLogger(),
         'progress_hooks': [my_hook],
+        # Add custom headers
+        'http_headers': {'Referer': 'https://www.google.com'}
     }
 
+
+    # ℹ️ See the public functions in yt_dlp.YoutubeDL for for other available functions.
+    # Eg: "ydl.download", "ydl.download_with_info_file"
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.add_post_processor(MyCustomPP())
         info = ydl.extract_info('https://www.youtube.com/watch?v=BaW_jenozKc')
-        print(json.dumps(ydl.sanitize_info(info)))
 
-See the public functions in yt_dlp/YoutubeDL.py for other available
-functions. Eg: ydl.download, ydl.download_with_info_file
+        # ℹ️ ydl.sanitize_info makes the info json-serializable
+        print(json.dumps(ydl.sanitize_info(info)))
 
 TIP: If you are porting your code from youtube-dl to yt-dlp, one
 important point to look out for is that we do not guarantee the return
@@ -2142,6 +2365,16 @@ DEPRECATED OPTIONS
 These are all the deprecated options and the current alternative to
 achieve the same effect
 
+Almost redundant options
+
+While these options are almost the same as their new counterparts, there
+are some differences that prevents them being redundant
+
+    -j, --dump-json                  --print "%()j"
+    -F, --list-formats               --print formats_table
+    --list-thumbnails                --print thumbnails_table --print playlist:thumbnails_table
+    --list-subs                      --print automatic_captions_table --print subtitles_table
+
 Redundant options
 
 While these options are redundant, they are still expected to be used
@@ -2155,17 +2388,20 @@ due to their ease of use
     --get-thumbnail                  --print thumbnail
     -e, --get-title                  --print title
     -g, --get-url                    --print urls
-    -j, --dump-json                  --print "%()j"
     --match-title REGEX              --match-filter "title ~= (?i)REGEX"
     --reject-title REGEX             --match-filter "title !~= (?i)REGEX"
     --min-views COUNT                --match-filter "view_count >=? COUNT"
     --max-views COUNT                --match-filter "view_count <=? COUNT"
+    --user-agent UA                  --add-header "User-Agent:UA"
+    --referer URL                    --add-header "Referer:URL"
 
 Not recommended
 
 While these options still work, their use is not recommended since there
 are other alternatives to achieve the same
 
+    --exec-before-download CMD       --exec "before_dl:CMD"
+    --no-exec-before-download        --no-exec
     --all-formats                    -f all
     --all-subs                       --sub-langs all --write-subs
     --print-json                     -j --no-simulate
@@ -2196,11 +2432,13 @@ Old aliases
 These are aliases that are no longer documented for various reasons
 
     --avconv-location                --ffmpeg-location
+    --clean-infojson                 --clean-info-json
     --cn-verification-proxy URL      --geo-verification-proxy URL
     --dump-headers                   --print-traffic
     --dump-intermediate-pages        --dump-pages
     --force-write-download-archive   --force-write-archive
     --load-info                      --load-info-json
+    --no-clean-infojson              --no-clean-info-json
     --no-split-tracks                --no-split-chapters
     --no-write-srt                   --no-write-subs
     --prefer-unsecure                --prefer-insecure
@@ -2213,7 +2451,8 @@ These are aliases that are no longer documented for various reasons
 
 Sponskrub Options
 
-Support for SponSkrub has been deprecated in favor of --sponsorblock
+Support for SponSkrub has been deprecated in favor of the --sponsorblock
+options
 
     --sponskrub                      --sponsorblock-mark all
     --no-sponskrub                   --no-sponsorblock

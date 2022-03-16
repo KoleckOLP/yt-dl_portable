@@ -79,7 +79,7 @@ if sys.version_info[0] == 2:
         elif isinstance(s, bytearray):
             return bytes(s)
         elif isinstance(s, memoryview):
-            return s[start:end].tobytes()
+            return s.tobytes()
         else:
             return ''.join(s)
     def tostr(bs):
@@ -101,7 +101,7 @@ if sys.version_info[0] == 2:
         return isinstance(x, basestring)
 
     def is_bytes(x):
-        return isinstance(x, basestring) or \
+        return isinstance(x, str) or \
                 isinstance(x, bytearray) or \
                 isinstance(x, memoryview)
 
@@ -129,7 +129,7 @@ else:
         elif isinstance(s,str):
             return s.encode(encoding)
         elif isinstance(s, memoryview):
-            return s[start:end].tobytes()
+            return s.tobytes()
         else:
             return bytes([s])
     def tostr(bs):
