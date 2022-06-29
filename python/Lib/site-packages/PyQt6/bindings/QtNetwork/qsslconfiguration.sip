@@ -99,6 +99,18 @@ public:
     bool missingCertificateIsFatal() const;
     void setMissingCertificateIsFatal(bool cannotRecover);
     static const char *NextProtocolHttp1_1 /Encoding="None",NoSetter/;
+%If (Qt_6_3_0 -)
+    bool dtlsCookieVerificationEnabled() const;
+%End
+%If (Qt_6_3_0 -)
+    void setDtlsCookieVerificationEnabled(bool enable);
+%End
+%If (Qt_6_3_0 -)
+    static QSslConfiguration defaultDtlsConfiguration();
+%End
+%If (Qt_6_3_0 -)
+    static void setDefaultDtlsConfiguration(const QSslConfiguration &configuration);
+%End
 };
 
 %End

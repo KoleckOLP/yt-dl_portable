@@ -51,6 +51,16 @@ double qAbs(const double &t);
 int qRound(qreal d);
 qint64 qRound64(qreal d);
 const char *qVersion();
+// Minimal support for the Qt resource system to help porting from PyQt5.
+%ModuleCode
+QT_BEGIN_NAMESPACE
+extern bool qRegisterResourceData(int, const unsigned char *, const unsigned char *, const unsigned char *);
+extern bool qUnregisterResourceData(int, const unsigned char *, const unsigned char *, const unsigned char *);
+QT_END_NAMESPACE
+%End
+
+bool qRegisterResourceData(int, const unsigned char *, const unsigned char *, const unsigned char *);
+bool qUnregisterResourceData(int, const unsigned char *, const unsigned char *, const unsigned char *);
 bool qFuzzyCompare(double p1, double p2);
 typedef void *QFunctionPointer;
 // Mapped type for qintptr.

@@ -105,6 +105,9 @@ public:
     int index() const;
     QMetaProperty property() const;
     QMetaMethod method() const;
+%If (Qt_6_3_0 -)
+    void swap(QQmlProperty &other);
+%End
 };
 
 typedef QList<QQmlProperty> QQmlProperties;

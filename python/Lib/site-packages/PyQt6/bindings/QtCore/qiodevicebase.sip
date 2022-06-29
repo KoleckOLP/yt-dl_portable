@@ -42,4 +42,9 @@ public:
     };
 
     typedef QFlags<QIODeviceBase::OpenModeFlag> OpenMode;
+
+protected:
+%If (Qt_6_3_0 -)
+    ~QIODeviceBase();
+%End
 };

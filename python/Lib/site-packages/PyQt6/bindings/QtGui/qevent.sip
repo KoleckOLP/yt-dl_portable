@@ -737,6 +737,9 @@ class QHoverEvent : QSinglePointEvent /NoDefaultCtors/
 %End
 
 public:
+%If (Qt_6_3_0 -)
+    QHoverEvent(QEvent::Type type, const QPointF &pos, const QPointF &globalPos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers = Qt::NoModifier, const QPointingDevice *device = QPointingDevice::primaryPointingDevice());
+%End
     QHoverEvent(QEvent::Type type, const QPointF &pos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers = Qt::NoModifier, const QPointingDevice *device = QPointingDevice::primaryPointingDevice());
     virtual ~QHoverEvent();
     virtual bool isUpdateEvent() const;

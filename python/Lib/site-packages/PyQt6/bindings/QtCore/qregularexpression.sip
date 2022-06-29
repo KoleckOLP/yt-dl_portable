@@ -151,6 +151,12 @@ public:
     qsizetype capturedLength(int nth = 0) const;
     qsizetype capturedEnd(QStringView name) const;
     qsizetype capturedEnd(int nth = 0) const;
+%If (Qt_6_3_0 -)
+    bool hasCaptured(int nth) const;
+%End
+%If (Qt_6_3_0 -)
+    bool hasCaptured(const QString &name) const;
+%End
 };
 
 class QRegularExpressionMatchIterator

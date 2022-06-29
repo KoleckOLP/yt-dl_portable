@@ -55,4 +55,12 @@ protected:
 signals:
     void newConnection();
     void acceptError(QAbstractSocket::SocketError socketError);
+
+public:
+%If (Qt_6_3_0 -)
+    void setListenBacklogSize(int size);
+%End
+%If (Qt_6_3_0 -)
+    int listenBacklogSize() const;
+%End
 };

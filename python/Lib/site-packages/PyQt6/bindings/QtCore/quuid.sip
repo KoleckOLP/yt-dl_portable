@@ -90,7 +90,13 @@ public:
     QUuid::Version version() const;
     QByteArray toByteArray(QUuid::StringFormat mode = QUuid::WithBraces) const;
     QByteArray toRfc4122() const;
+%If (Qt_6_3_0 -)
+    static QUuid fromRfc4122(QByteArrayView);
+%End
+%If (- Qt_6_3_0)
     static QUuid fromRfc4122(const QByteArray &);
+%End
+    static QUuid fromString(QStringView string);
 };
 
 QDataStream &operator<<(QDataStream &, const QUuid & /Constrained/) /ReleaseGIL/;

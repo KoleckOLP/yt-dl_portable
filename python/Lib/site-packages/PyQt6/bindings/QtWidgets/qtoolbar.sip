@@ -38,9 +38,16 @@ public:
     void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
     void clear();
+%If (- Qt_6_3_0)
     void addAction(QAction *);
+%End
+%If (- Qt_6_3_0)
     QAction *addAction(const QString &text) /Transfer/;
+%End
+%If (- Qt_6_3_0)
     QAction *addAction(const QIcon &icon, const QString &text) /Transfer/;
+%End
+%If (- Qt_6_3_0)
     QAction *addAction(const QString &text, SIP_PYOBJECT slot /TypeHint="PYQT_SLOT"/) /Transfer/;
 %MethodCode
         QObject *receiver;
@@ -56,6 +63,8 @@ public:
         }
 %End
 
+%End
+%If (- Qt_6_3_0)
     QAction *addAction(const QIcon &icon, const QString &text, SIP_PYOBJECT slot /TypeHint="PYQT_SLOT"/) /Transfer/;
 %MethodCode
         QObject *receiver;
@@ -71,6 +80,7 @@ public:
         }
 %End
 
+%End
     QAction *addSeparator() /Transfer/;
     QAction *insertSeparator(QAction *before) /Transfer/;
     QAction *addWidget(QWidget *widget /Transfer/) /Transfer/;

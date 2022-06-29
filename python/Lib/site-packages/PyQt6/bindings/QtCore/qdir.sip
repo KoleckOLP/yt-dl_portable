@@ -131,6 +131,9 @@ public:
     QStringList entryList(const QStringList &nameFilters, QDir::Filters filters = QDir::NoFilter, QDir::SortFlags sort = QDir::NoSort) const;
     QFileInfoList entryInfoList(QDir::Filters filters = QDir::NoFilter, QDir::SortFlags sort = QDir::NoSort) const;
     QFileInfoList entryInfoList(const QStringList &nameFilters, QDir::Filters filters = QDir::NoFilter, QDir::SortFlags sort = QDir::NoSort) const;
+%If (Qt_6_3_0 -)
+    bool mkdir(const QString &dirName, QFileDevice::Permissions permissions) const;
+%End
     bool mkdir(const QString &dirName) const;
     bool rmdir(const QString &dirName) const;
     bool mkpath(const QString &dirPath) const;

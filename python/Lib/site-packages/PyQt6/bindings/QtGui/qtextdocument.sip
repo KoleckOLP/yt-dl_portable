@@ -54,6 +54,9 @@ public:
     {
         DocumentTitle,
         DocumentUrl,
+%If (Qt_6_3_0 -)
+        CssMedia,
+%End
     };
 
     void setMetaInformation(QTextDocument::MetaInformation info, const QString &);

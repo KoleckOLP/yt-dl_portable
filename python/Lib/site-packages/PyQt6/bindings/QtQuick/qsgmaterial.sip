@@ -33,6 +33,9 @@ public:
         RequiresDeterminant,
         RequiresFullMatrixExceptTranslate,
         RequiresFullMatrix,
+%If (Qt_6_3_0 -)
+        NoBatching,
+%End
         CustomCompileStep,
     };
 

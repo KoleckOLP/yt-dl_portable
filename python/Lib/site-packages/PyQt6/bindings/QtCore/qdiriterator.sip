@@ -41,6 +41,9 @@ public:
     QDirIterator(const QString &path, const QStringList &nameFilters, QDir::Filters filters = QDir::NoFilter, QDirIterator::IteratorFlags flags = QDirIterator::NoIteratorFlags);
     ~QDirIterator();
     QString next();
+%If (Qt_6_3_0 -)
+    QFileInfo nextFileInfo();
+%End
     bool hasNext() const;
     QString fileName() const;
     QString filePath() const;

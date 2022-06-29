@@ -92,6 +92,9 @@ public:
 
     void setNotation(QDoubleValidator::Notation);
     QDoubleValidator::Notation notation() const;
+%If (Qt_6_3_0 -)
+    virtual void fixup(QString &input) const;
+%End
 };
 
 class QRegularExpressionValidator : QValidator

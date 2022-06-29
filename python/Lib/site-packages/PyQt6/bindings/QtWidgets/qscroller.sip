@@ -52,8 +52,8 @@ public:
 
     static bool hasScroller(QObject *target);
     static QScroller *scroller(QObject *target);
-    static int grabGesture(QObject *target, QScroller::ScrollerGestureType scrollGestureType = QScroller::TouchGesture) [Qt::GestureType (QObject *target, QScroller::ScrollerGestureType scrollGestureType = QScroller::TouchGesture)];
-    static int grabbedGesture(QObject *target) [Qt::GestureType (QObject *target)];
+    static Qt::GestureType grabGesture(QObject *target, QScroller::ScrollerGestureType scrollGestureType = QScroller::TouchGesture);
+    static Qt::GestureType grabbedGesture(QObject *target);
     static void ungrabGesture(QObject *target);
     static QList<QScroller *> activeScrollers();
     QObject *target() const;

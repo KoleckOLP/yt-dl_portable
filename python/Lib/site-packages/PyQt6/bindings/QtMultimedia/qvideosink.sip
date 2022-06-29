@@ -36,6 +36,11 @@ public:
     void setSubtitleText(const QString &subtitle);
     void setVideoFrame(const QVideoFrame &frame);
     QVideoFrame videoFrame() const;
+
+signals:
+    void videoFrameChanged(const QVideoFrame &frame) const;
+    void subtitleTextChanged(const QString &subtitleText) const;
+    void videoSizeChanged();
 };
 
 %End

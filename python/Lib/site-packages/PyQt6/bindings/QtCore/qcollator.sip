@@ -60,4 +60,10 @@ public:
     bool ignorePunctuation() const;
     int compare(const QString &s1, const QString &s2) const;
     QCollatorSortKey sortKey(const QString &string) const;
+%If (Qt_6_3_0 -)
+    static int defaultCompare(QStringView s1, QStringView s2);
+%End
+%If (Qt_6_3_0 -)
+    static QCollatorSortKey defaultSortKey(QStringView key);
+%End
 };

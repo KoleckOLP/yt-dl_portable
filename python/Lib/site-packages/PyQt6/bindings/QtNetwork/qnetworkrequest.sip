@@ -68,6 +68,12 @@ public:
         RedirectPolicyAttribute,
         Http2DirectAttribute,
         AutoDeleteReplyOnFinishAttribute,
+%If (Qt_6_3_0 -)
+        ConnectionCacheExpiryTimeoutSecondsAttribute,
+%End
+%If (Qt_6_3_0 -)
+        Http2CleartextAllowedAttribute,
+%End
         User,
         UserMax,
     };

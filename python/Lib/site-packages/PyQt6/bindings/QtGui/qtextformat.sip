@@ -50,7 +50,37 @@ public:
 %End
 };
 
+%If (Qt_6_3_0 -)
+QDataStream &operator<<(QDataStream &, const QTextTableCellFormat &) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator<<(QDataStream &, const QTextFrameFormat &) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator<<(QDataStream &, const QTextListFormat &) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator<<(QDataStream &, const QTextBlockFormat &) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator<<(QDataStream &, const QTextCharFormat &) /ReleaseGIL/;
+%End
 QDataStream &operator<<(QDataStream &, const QTextLength &) /ReleaseGIL/;
+%If (Qt_6_3_0 -)
+QDataStream &operator>>(QDataStream &, QTextTableCellFormat & /Constrained/) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator>>(QDataStream &, QTextFrameFormat & /Constrained/) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator>>(QDataStream &, QTextListFormat & /Constrained/) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator>>(QDataStream &, QTextBlockFormat & /Constrained/) /ReleaseGIL/;
+%End
+%If (Qt_6_3_0 -)
+QDataStream &operator>>(QDataStream &, QTextCharFormat & /Constrained/) /ReleaseGIL/;
+%End
 QDataStream &operator>>(QDataStream &, QTextLength & /Constrained/) /ReleaseGIL/;
 
 class QTextFormat

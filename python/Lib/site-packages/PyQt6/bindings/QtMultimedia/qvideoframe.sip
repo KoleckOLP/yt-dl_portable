@@ -94,6 +94,29 @@ public:
     QString subtitleText() const;
     void setSubtitleText(const QString &text);
     void paint(QPainter *painter, const QRectF &rect, const QVideoFrame::PaintOptions &options);
+%If (Qt_6_3_0 -)
+
+    enum RotationAngle
+    {
+        Rotation0,
+        Rotation90,
+        Rotation180,
+        Rotation270,
+    };
+
+%End
+%If (Qt_6_3_0 -)
+    void setRotationAngle(QVideoFrame::RotationAngle);
+%End
+%If (Qt_6_3_0 -)
+    QVideoFrame::RotationAngle rotationAngle() const;
+%End
+%If (Qt_6_3_0 -)
+    void setMirrored(bool);
+%End
+%If (Qt_6_3_0 -)
+    bool mirrored() const;
+%End
 };
 
 %End

@@ -48,6 +48,9 @@ public:
     void blit(GLuint texture, const QMatrix4x4 &targetTransform, const QMatrix3x3 &sourceTransform);
     static QMatrix4x4 targetTransform(const QRectF &target, const QRect &viewport);
     static QMatrix3x3 sourceTransform(const QRectF &subTexture, const QSize &textureSize, QOpenGLTextureBlitter::Origin origin);
+%If (Qt_6_3_0 -)
+    bool supportsRectangleTarget() const;
+%End
 
 private:
     QOpenGLTextureBlitter(const QOpenGLTextureBlitter &);

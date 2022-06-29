@@ -1,7 +1,8 @@
 
 complete --command yt-dlp --long-option help --short-option h --description 'Print this help text and exit'
 complete --command yt-dlp --long-option version --description 'Print program version and exit'
-complete --command yt-dlp --long-option update --short-option U --description 'Update this program to latest version. Make sure that you have sufficient permissions (run with sudo if needed)'
+complete --command yt-dlp --long-option update --short-option U --description 'Update this program to latest version'
+complete --command yt-dlp --long-option no-update --description 'Do not update (default)'
 complete --command yt-dlp --long-option ignore-errors --short-option i --description 'Ignore download and postprocessing errors. The download will be considered successful even if the postprocessing fails'
 complete --command yt-dlp --long-option no-abort-on-error --description 'Continue with next video on download errors; e.g. to skip unavailable videos in a playlist (default)'
 complete --command yt-dlp --long-option abort-on-error --description 'Abort downloading of further videos if an error occurs (Alias: --no-ignore-errors)'
@@ -9,10 +10,10 @@ complete --command yt-dlp --long-option dump-user-agent --description 'Display t
 complete --command yt-dlp --long-option list-extractors --description 'List all supported extractors and exit'
 complete --command yt-dlp --long-option extractor-descriptions --description 'Output descriptions of all supported extractors and exit'
 complete --command yt-dlp --long-option force-generic-extractor --description 'Force extraction to use the generic extractor'
-complete --command yt-dlp --long-option default-search --description 'Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for the search term "large apple". Use the value "auto" to let yt-dlp guess ("auto_warning" to emit a warning when guessing). "error" just throws an error. The default value "fixup_error" repairs broken URLs, but emits an error if this is not possible instead of searching'
+complete --command yt-dlp --long-option default-search --description 'Use this prefix for unqualified URLs. Eg: "gvsearch2:python" downloads two videos from google videos for the search term "python". Use the value "auto" to let yt-dlp guess ("auto_warning" to emit a warning when guessing). "error" just throws an error. The default value "fixup_error" repairs broken URLs, but emits an error if this is not possible instead of searching'
 complete --command yt-dlp --long-option ignore-config --description 'Don'"'"'t load any more configuration files except those given by --config-locations. For backward compatibility, if this option is found inside the system configuration file, the user configuration is not loaded. (Alias: --no-config)'
 complete --command yt-dlp --long-option no-config-locations --description 'Do not load any custom configuration files (default). When given inside a configuration file, ignore all previous --config-locations defined in the current file'
-complete --command yt-dlp --long-option config-locations --description 'Location of the main configuration file; either the path to the config or its containing directory. Can be used multiple times and inside other configuration files'
+complete --command yt-dlp --long-option config-locations --description 'Location of the main configuration file; either the path to the config or its containing directory ("-" for stdin). Can be used multiple times and inside other configuration files'
 complete --command yt-dlp --long-option flat-playlist --description 'Do not extract the videos of a playlist, only list them'
 complete --command yt-dlp --long-option no-flat-playlist --description 'Extract the videos of a playlist'
 complete --command yt-dlp --long-option live-from-start --description 'Download livestreams from the start. Currently only supported for YouTube (Experimental)'
@@ -23,7 +24,8 @@ complete --command yt-dlp --long-option mark-watched --description 'Mark videos 
 complete --command yt-dlp --long-option no-mark-watched --description 'Do not mark videos watched (default)'
 complete --command yt-dlp --long-option no-colors --description 'Do not emit color codes in output'
 complete --command yt-dlp --long-option compat-options --description 'Options that can help keep compatibility with youtube-dl or youtube-dlc configurations by reverting some of the changes made in yt-dlp. See "Differences in default behavior" for details'
-complete --command yt-dlp --long-option proxy --description 'Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a proper scheme. For example socks5://user:pass@127.0.0.1:1080/. Pass in an empty string (--proxy "") for direct connection'
+complete --command yt-dlp --long-option alias --description 'Create aliases for an option string. Unless an alias starts with a dash "-", it is prefixed with "--". Arguments are parsed according to the Python string formatting mini-language. Eg: --alias get-audio,-X "-S=aext:{0},abr -x --audio-format {0}" creates options "--get-audio" and "-X" that takes an argument (ARG0) and expands to "-S=aext:ARG0,abr -x --audio-format ARG0". All defined aliases are listed in the --help output. Alias options can trigger more aliases; so be careful to avoid defining recursive options. As a safety measure, each alias may be triggered a maximum of 100 times. This option can be used multiple times'
+complete --command yt-dlp --long-option proxy --description 'Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a proper scheme. Eg: socks5://user:pass@127.0.0.1:1080/. Pass in an empty string (--proxy "") for direct connection'
 complete --command yt-dlp --long-option socket-timeout --description 'Time to wait before giving up, in seconds'
 complete --command yt-dlp --long-option source-address --description 'Client-side IP address to bind to'
 complete --command yt-dlp --long-option force-ipv4 --short-option 4 --description 'Make all connections via IPv4'
@@ -34,19 +36,19 @@ complete --command yt-dlp --long-option geo-bypass --description 'Bypass geograp
 complete --command yt-dlp --long-option no-geo-bypass --description 'Do not bypass geographic restriction via faking X-Forwarded-For HTTP header'
 complete --command yt-dlp --long-option geo-bypass-country --description 'Force bypass geographic restriction with explicitly provided two-letter ISO 3166-2 country code'
 complete --command yt-dlp --long-option geo-bypass-ip-block --description 'Force bypass geographic restriction with explicitly provided IP block in CIDR notation'
-complete --command yt-dlp --long-option playlist-start --description 'Playlist video to start at (default is %default)'
-complete --command yt-dlp --long-option playlist-end --description 'Playlist video to end at (default is last)'
-complete --command yt-dlp --long-option playlist-items --description 'Playlist video items to download. Specify indices of the videos in the playlist separated by commas like: "--playlist-items 1,2,5,8" if you want to download videos indexed 1, 2, 5, 8 in the playlist. You can specify range: "--playlist-items 1-3,7,10-13", it will download the videos at index 1, 2, 3, 7, 10, 11, 12 and 13'
+complete --command yt-dlp --long-option playlist-start
+complete --command yt-dlp --long-option playlist-end
+complete --command yt-dlp --long-option playlist-items --short-option I --description 'Comma separated playlist_index of the videos to download. You can specify a range using "[START]:[STOP][:STEP]". For backward compatibility, START-STOP is also supported. Use negative indices to count from the right and negative STEP to download in reverse order. Eg: "-I 1:3,7,-5::2" used on a playlist of size 15 will download the videos at index 1,2,3,7,11,13,15'
 complete --command yt-dlp --long-option match-title
 complete --command yt-dlp --long-option reject-title
 complete --command yt-dlp --long-option min-filesize --description 'Do not download any videos smaller than SIZE (e.g. 50k or 44.6m)'
 complete --command yt-dlp --long-option max-filesize --description 'Do not download any videos larger than SIZE (e.g. 50k or 44.6m)'
-complete --command yt-dlp --long-option date --description 'Download only videos uploaded on this date. The date can be "YYYYMMDD" or in the format "(now|today)[+-][0-9](day|week|month|year)(s)?"'
+complete --command yt-dlp --long-option date --description 'Download only videos uploaded on this date. The date can be "YYYYMMDD" or in the format [now|today|yesterday][-N[day|week|month|year]]. Eg: --date today-2weeks'
 complete --command yt-dlp --long-option datebefore --description 'Download only videos uploaded on or before this date. The date formats accepted is the same as --date'
 complete --command yt-dlp --long-option dateafter --description 'Download only videos uploaded on or after this date. The date formats accepted is the same as --date'
 complete --command yt-dlp --long-option min-views
 complete --command yt-dlp --long-option max-views
-complete --command yt-dlp --long-option match-filter --description 'Generic video filter. Any field (see "OUTPUT TEMPLATE") can be compared with a number or a string using the operators defined in "Filtering formats". You can also simply specify a field to match if the field is present and "!field" to check if the field is not present. In addition, Python style regular expression matching can be done using "~=", and multiple filters can be checked with "&". Use a "\" to escape "&" or quotes if needed. Eg: --match-filter "!is_live & like_count>?100 & description~='"'"'(?i)\bcats \& dogs\b'"'"'" matches only videos that are not live, has a like count more than 100 (or the like field is not available), and also has a description that contains the phrase "cats & dogs" (ignoring case)'
+complete --command yt-dlp --long-option match-filters --description 'Generic video filter. Any "OUTPUT TEMPLATE" field can be compared with a number or a string using the operators defined in "Filtering formats". You can also simply specify a field to match if the field is present, use "!field" to check if the field is not present, and "&" to check multiple conditions. Use a "\" to escape "&" or quotes if needed. If used multiple times, the filter matches if atleast one of the conditions are met. Eg: --match-filter !is_live --match-filter "like_count>?100 & description~='"'"'(?i)\bcats \& dogs\b'"'"'" matches only videos that are not live OR those that have a like count more than 100 (or the like field is not available) and also has a description that contains the phrase "cats & dogs" (caseless). Use "--match-filter -" to interactively ask whether to download each video'
 complete --command yt-dlp --long-option no-match-filter --description 'Do not use generic video filter (default)'
 complete --command yt-dlp --long-option no-playlist --description 'Download only the video, if the URL refers to a video and a playlist'
 complete --command yt-dlp --long-option yes-playlist --description 'Download the playlist, if the URL refers to a video and a playlist'
@@ -56,8 +58,8 @@ complete --command yt-dlp --long-option no-download-archive --description 'Do no
 complete --command yt-dlp --long-option max-downloads --description 'Abort after downloading NUMBER files'
 complete --command yt-dlp --long-option break-on-existing --description 'Stop the download process when encountering a file that is in the archive'
 complete --command yt-dlp --long-option break-on-reject --description 'Stop the download process when encountering a file that has been filtered out'
-complete --command yt-dlp --long-option break-per-input --description 'Make --break-on-existing and --break-on-reject act only on the current input URL'
-complete --command yt-dlp --long-option no-break-per-input --description '--break-on-existing and --break-on-reject terminates the entire download queue'
+complete --command yt-dlp --long-option break-per-input --description 'Make --break-on-existing, --break-on-reject and --max-downloads act only on the current input URL'
+complete --command yt-dlp --long-option no-break-per-input --description '--break-on-existing and similar options terminates the entire download queue'
 complete --command yt-dlp --long-option skip-playlist-after-errors --description 'Number of allowed failures until the rest of the playlist is skipped'
 complete --command yt-dlp --long-option include-ads
 complete --command yt-dlp --long-option no-include-ads
@@ -67,8 +69,9 @@ complete --command yt-dlp --long-option throttled-rate --description 'Minimum do
 complete --command yt-dlp --long-option retries --short-option R --description 'Number of retries (default is %default), or "infinite"'
 complete --command yt-dlp --long-option file-access-retries --description 'Number of times to retry on file access error (default is %default), or "infinite"'
 complete --command yt-dlp --long-option fragment-retries --description 'Number of retries for a fragment (default is %default), or "infinite" (DASH, hlsnative and ISM)'
-complete --command yt-dlp --long-option skip-unavailable-fragments --description 'Skip unavailable fragments for DASH, hlsnative and ISM (default) (Alias: --no-abort-on-unavailable-fragment)'
-complete --command yt-dlp --long-option abort-on-unavailable-fragment --description 'Abort downloading if a fragment is unavailable (Alias: --no-skip-unavailable-fragments)'
+complete --command yt-dlp --long-option retry-sleep --description 'An expression for the time to sleep between retries in seconds (optionally) prefixed by the type of retry (file_access, fragment, http (default)) to apply the sleep to. EXPR can be a number, linear=START[:END[:STEP=1]] or exp=START[:END[:BASE=2]]. This option can be used multiple times to set the sleep for the different retry types. Eg: --retry-sleep linear=1::2 --retry-sleep fragment:exp=1:20'
+complete --command yt-dlp --long-option skip-unavailable-fragments --description 'Skip unavailable fragments for DASH, hlsnative and ISM downloads (default) (Alias: --no-abort-on-unavailable-fragment)'
+complete --command yt-dlp --long-option abort-on-unavailable-fragment --description 'Abort download if a fragment is unavailable (Alias: --no-skip-unavailable-fragments)'
 complete --command yt-dlp --long-option keep-fragments --description 'Keep downloaded fragments on disk after downloading is finished'
 complete --command yt-dlp --long-option no-keep-fragments --description 'Delete downloaded fragments after downloading is finished (default)'
 complete --command yt-dlp --long-option buffer-size --description 'Size of download buffer (e.g. 1024 or 16K) (default is %default)'
@@ -76,22 +79,25 @@ complete --command yt-dlp --long-option resize-buffer --description 'The buffer 
 complete --command yt-dlp --long-option no-resize-buffer --description 'Do not automatically adjust the buffer size'
 complete --command yt-dlp --long-option http-chunk-size --description 'Size of a chunk for chunk-based HTTP downloading (e.g. 10485760 or 10M) (default is disabled). May be useful for bypassing bandwidth throttling imposed by a webserver (experimental)'
 complete --command yt-dlp --long-option test
-complete --command yt-dlp --long-option playlist-reverse --description 'Download playlist videos in reverse order'
-complete --command yt-dlp --long-option no-playlist-reverse --description 'Download playlist videos in default order (default)'
+complete --command yt-dlp --long-option playlist-reverse
+complete --command yt-dlp --long-option no-playlist-reverse
 complete --command yt-dlp --long-option playlist-random --description 'Download playlist videos in random order'
+complete --command yt-dlp --long-option lazy-playlist --description 'Process entries in the playlist as they are received. This disables n_entries, --playlist-random and --playlist-reverse'
+complete --command yt-dlp --long-option no-lazy-playlist --description 'Process videos in the playlist only after the entire playlist is parsed (default)'
 complete --command yt-dlp --long-option xattr-set-filesize --description 'Set file xattribute ytdl.filesize with expected file size'
 complete --command yt-dlp --long-option hls-prefer-native
 complete --command yt-dlp --long-option hls-prefer-ffmpeg
 complete --command yt-dlp --long-option hls-use-mpegts --description 'Use the mpegts container for HLS videos; allowing some players to play the video while downloading, and reducing the chance of file corruption if download is interrupted. This is enabled by default for live streams'
 complete --command yt-dlp --long-option no-hls-use-mpegts --description 'Do not use the mpegts container for HLS videos. This is default when not downloading live streams'
-complete --command yt-dlp --long-option downloader --description 'Name or path of the external downloader to use (optionally) prefixed by the protocols (http, ftp, m3u8, dash, rstp, rtmp, mms) to use it for. Currently supports native, aria2c, avconv, axel, curl, ffmpeg, httpie, wget (Recommended: aria2c). You can use this option multiple times to set different downloaders for different protocols. For example, --downloader aria2c --downloader "dash,m3u8:native" will use aria2c for http/ftp downloads, and the native downloader for dash/m3u8 downloads (Alias: --external-downloader)'
+complete --command yt-dlp --long-option download-sections --description 'Download only chapters whose title matches the given regular expression. Time ranges prefixed by a "*" can also be used in place of chapters to download the specified range. Eg: --download-sections "*10:15-15:00" --download-sections "intro". Needs ffmpeg. This option can be used multiple times to download multiple sections'
+complete --command yt-dlp --long-option downloader --description 'Name or path of the external downloader to use (optionally) prefixed by the protocols (http, ftp, m3u8, dash, rstp, rtmp, mms) to use it for. Currently supports native, aria2c, avconv, axel, curl, ffmpeg, httpie, wget. You can use this option multiple times to set different downloaders for different protocols. For example, --downloader aria2c --downloader "dash,m3u8:native" will use aria2c for http/ftp downloads, and the native downloader for dash/m3u8 downloads (Alias: --external-downloader)'
 complete --command yt-dlp --long-option downloader-args --description 'Give these arguments to the external downloader. Specify the downloader name and the arguments separated by a colon ":". For ffmpeg, arguments can be passed to different positions using the same syntax as --postprocessor-args. You can use this option multiple times to give different arguments to different downloaders (Alias: --external-downloader-args)'
 complete --command yt-dlp --long-option batch-file --short-option a --description 'File containing URLs to download ("-" for stdin), one URL per line. Lines starting with "#", ";" or "]" are considered as comments and ignored' --require-parameter
 complete --command yt-dlp --long-option no-batch-file --description 'Do not read URLs from batch file (default)'
 complete --command yt-dlp --long-option id
 complete --command yt-dlp --long-option paths --short-option P --description 'The paths where the files should be downloaded. Specify the type of file and the path separated by a colon ":". All the same TYPES as --output are supported. Additionally, you can also provide "home" (default) and "temp" paths. All intermediary files are first downloaded to the temp path and then the final files are moved over to the home path after download is finished. This option is ignored if --output is an absolute path'
 complete --command yt-dlp --long-option output --short-option o --description 'Output filename template; see "OUTPUT TEMPLATE" for details'
-complete --command yt-dlp --long-option output-na-placeholder --description 'Placeholder value for unavailable meta fields in output filename template (default: "%default")'
+complete --command yt-dlp --long-option output-na-placeholder --description 'Placeholder for unavailable fields in "OUTPUT TEMPLATE" (default: "%default")'
 complete --command yt-dlp --long-option autonumber-size
 complete --command yt-dlp --long-option autonumber-start
 complete --command yt-dlp --long-option restrict-filenames --description 'Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames'
@@ -143,7 +149,7 @@ complete --command yt-dlp --long-option no-simulate --description 'Download the 
 complete --command yt-dlp --long-option ignore-no-formats-error --description 'Ignore "No video formats" error. Useful for extracting metadata even if the videos are not actually available for download (experimental)'
 complete --command yt-dlp --long-option no-ignore-no-formats-error --description 'Throw error when no downloadable video formats are found (default)'
 complete --command yt-dlp --long-option skip-download --description 'Do not download the video but write all related files (Alias: --no-download)'
-complete --command yt-dlp --long-option print --short-option O --description 'Field name or output template to print to screen, optionally prefixed with when to print it, separated by a ":". Supported values of "WHEN" are the same as that of --use-postprocessor, and "video" (default). Implies --quiet and --simulate (unless --no-simulate is used). This option can be used multiple times'
+complete --command yt-dlp --long-option print --short-option O --description 'Field name or output template to print to screen, optionally prefixed with when to print it, separated by a ":". Supported values of "WHEN" are the same as that of --use-postprocessor, and "video" (default). Implies --quiet. Implies --simulate unless --no-simulate or later stages of WHEN are used. This option can be used multiple times'
 complete --command yt-dlp --long-option print-to-file --description 'Append given template to the file. The values of WHEN and TEMPLATE are same as that of --print. FILE uses the same syntax as the output template. This option can be used multiple times'
 complete --command yt-dlp --long-option get-url --short-option g
 complete --command yt-dlp --long-option get-title --short-option e
@@ -165,6 +171,7 @@ complete --command yt-dlp --long-option progress-template --description 'Templat
 complete --command yt-dlp --long-option verbose --short-option v --description 'Print various debugging information'
 complete --command yt-dlp --long-option dump-pages --description 'Print downloaded pages encoded using base64 to debug problems (very verbose)'
 complete --command yt-dlp --long-option write-pages --description 'Write downloaded intermediary pages to files in the current directory to debug problems'
+complete --command yt-dlp --long-option load-pages
 complete --command yt-dlp --long-option youtube-print-sig-code
 complete --command yt-dlp --long-option print-traffic --description 'Display sent and read HTTP traffic'
 complete --command yt-dlp --long-option call-home --short-option C
@@ -183,8 +190,8 @@ complete --command yt-dlp --long-option max-sleep-interval --description 'Maximu
 complete --command yt-dlp --long-option sleep-subtitles --description 'Number of seconds to sleep before each subtitle download'
 complete --command yt-dlp --long-option format --short-option f --description 'Video format code, see "FORMAT SELECTION" for more details'
 complete --command yt-dlp --long-option format-sort --short-option S --description 'Sort the formats by the fields given, see "Sorting Formats" for more details'
-complete --command yt-dlp --long-option format-sort-force --description 'Force user specified sort order to have precedence over all fields, see "Sorting Formats" for more details'
-complete --command yt-dlp --long-option no-format-sort-force --description 'Some fields have precedence over the user specified sort order (default), see "Sorting Formats" for more details'
+complete --command yt-dlp --long-option format-sort-force --description 'Force user specified sort order to have precedence over all fields, see "Sorting Formats" for more details (Alias: --S-force)'
+complete --command yt-dlp --long-option no-format-sort-force --description 'Some fields have precedence over the user specified sort order (default)'
 complete --command yt-dlp --long-option video-multistreams --description 'Allow multiple video streams to be merged into a single file'
 complete --command yt-dlp --long-option no-video-multistreams --description 'Only one video stream is downloaded for each output file (default)'
 complete --command yt-dlp --long-option audio-multistreams --description 'Allow multiple audio streams to be merged into a single file'
@@ -192,7 +199,7 @@ complete --command yt-dlp --long-option no-audio-multistreams --description 'Onl
 complete --command yt-dlp --long-option all-formats
 complete --command yt-dlp --long-option prefer-free-formats --description 'Prefer video formats with free containers over non-free ones of same quality. Use with "-S ext" to strictly prefer free containers irrespective of quality'
 complete --command yt-dlp --long-option no-prefer-free-formats --description 'Don'"'"'t give any special preference to free containers (default)'
-complete --command yt-dlp --long-option check-formats --description 'Check that the selected formats are actually downloadable'
+complete --command yt-dlp --long-option check-formats --description 'Make sure formats are selected only from those that are actually downloadable'
 complete --command yt-dlp --long-option check-all-formats --description 'Check all formats for whether they are actually downloadable'
 complete --command yt-dlp --long-option no-check-formats --description 'Do not check that the formats are actually downloadable'
 complete --command yt-dlp --long-option list-formats --short-option F --description 'List available formats of each video. Simulate unless --no-simulate is used'
@@ -207,8 +214,8 @@ complete --command yt-dlp --long-option write-auto-subs --description 'Write aut
 complete --command yt-dlp --long-option no-write-auto-subs --description 'Do not write auto-generated subtitles (default) (Alias: --no-write-automatic-subs)'
 complete --command yt-dlp --long-option all-subs
 complete --command yt-dlp --long-option list-subs --description 'List available subtitles of each video. Simulate unless --no-simulate is used'
-complete --command yt-dlp --long-option sub-format --description 'Subtitle format, accepts formats preference, for example: "srt" or "ass/srt/best"'
-complete --command yt-dlp --long-option sub-langs --description 'Languages of the subtitles to download (can be regex) or "all" separated by commas. (Eg: --sub-langs "en.*,ja") You can prefix the language code with a "-" to exempt it from the requested languages. (Eg: --sub-langs all,-live_chat) Use --list-subs for a list of available language tags'
+complete --command yt-dlp --long-option sub-format --description 'Subtitle format; accepts formats preference, Eg: "srt" or "ass/srt/best"'
+complete --command yt-dlp --long-option sub-langs --description 'Languages of the subtitles to download (can be regex) or "all" separated by commas. (Eg: --sub-langs "en.*,ja") You can prefix the language code with a "-" to exclude it from the requested languages. (Eg: --sub-langs all,-live_chat) Use --list-subs for a list of available language tags'
 complete --command yt-dlp --long-option username --short-option u --description 'Login with this account ID'
 complete --command yt-dlp --long-option password --short-option p --description 'Account password. If this option is left out, yt-dlp will ask interactively'
 complete --command yt-dlp --long-option twofactor --short-option 2 --description 'Two-factor authentication code'
@@ -219,11 +226,14 @@ complete --command yt-dlp --long-option ap-mso --description 'Adobe Pass multipl
 complete --command yt-dlp --long-option ap-username --description 'Multiple-system operator account login'
 complete --command yt-dlp --long-option ap-password --description 'Multiple-system operator account password. If this option is left out, yt-dlp will ask interactively'
 complete --command yt-dlp --long-option ap-list-mso --description 'List all supported multiple-system operators'
+complete --command yt-dlp --long-option client-certificate --description 'Path to client certificate file in PEM format. May include the private key'
+complete --command yt-dlp --long-option client-certificate-key --description 'Path to private key file for client certificate'
+complete --command yt-dlp --long-option client-certificate-password --description 'Password for client certificate private key, if encrypted. If not provided, and the key is encrypted, yt-dlp will ask interactively'
 complete --command yt-dlp --long-option extract-audio --short-option x --description 'Convert video files to audio-only files (requires ffmpeg and ffprobe)'
-complete --command yt-dlp --long-option audio-format --description 'Specify audio format to convert the audio to when -x is used. Currently supported formats are: best (default) or one of aac|flac|mp3|m4a|opus|vorbis|wav|alac'
-complete --command yt-dlp --long-option audio-quality --description 'Specify ffmpeg audio quality, insert a value between 0 (best) and 10 (worst) for VBR or a specific bitrate like 128K (default %default)'
-complete --command yt-dlp --long-option remux-video --description 'Remux the video into another container if necessary (currently supported: mp4|mkv|flv|webm|mov|avi|mp3|mka|m4a|ogg|opus). If target container does not support the video/audio codec, remuxing will fail. You can specify multiple rules; Eg. "aac>m4a/mov>mp4/mkv" will remux aac to m4a, mov to mp4 and anything else to mkv.' --arguments 'mp4 mkv' --exclusive
-complete --command yt-dlp --long-option recode-video --description 'Re-encode the video into another format if re-encoding is necessary. The syntax and supported formats are the same as --remux-video' --arguments 'mp4 flv ogg webm mkv' --exclusive
+complete --command yt-dlp --long-option audio-format --description 'Format to convert the audio to when -x is used. (currently supported: best (default), mp3, aac, m4a, opus, vorbis, flac, alac, wav). You can specify multiple rules using similar syntax as --remux-video'
+complete --command yt-dlp --long-option audio-quality --description 'Specify ffmpeg audio quality to use when converting the audio with -x. Insert a value between 0 (best) and 10 (worst) for VBR or a specific bitrate like 128K (default %default)'
+complete --command yt-dlp --long-option remux-video --description 'Remux the video into another container if necessary (currently supported: mp4, mkv, flv, webm, mov, avi, mka, ogg, mp3, aac, m4a, opus, vorbis, flac, alac, wav). If target container does not support the video/audio codec, remuxing will fail. You can specify multiple rules; Eg. "aac>m4a/mov>mp4/mkv" will remux aac to m4a, mov to mp4 and anything else to mkv' --arguments 'mp4 mkv' --exclusive
+complete --command yt-dlp --long-option recode-video --description 'Re-encode the video into another format if necessary. The syntax and supported formats are the same as --remux-video' --arguments 'mp4 flv ogg webm mkv' --exclusive
 complete --command yt-dlp --long-option postprocessor-args --description 'Give these arguments to the postprocessors. Specify the postprocessor/executable name and the arguments separated by a colon ":" to give the argument to the specified postprocessor/executable. Supported PP are: Merger, ModifyChapters, SplitChapters, ExtractAudio, VideoRemuxer, VideoConvertor, Metadata, EmbedSubtitle, EmbedThumbnail, SubtitlesConvertor, ThumbnailsConvertor, FixupStretched, FixupM4a, FixupM3u8, FixupTimestamp and FixupDuration. The supported executables are: AtomicParsley, FFmpeg and FFprobe. You can also specify "PP+EXE:ARGS" to give the arguments to the specified executable only when being used by the specified postprocessor. Additionally, for ffmpeg/ffprobe, "_i"/"_o" can be appended to the prefix optionally followed by a number to pass the argument before the specified input/output file. Eg: --ppa "Merger+ffmpeg_i1:-v quiet". You can use this option multiple times to give different arguments to different postprocessors. (Alias: --ppa)'
 complete --command yt-dlp --long-option keep-video --short-option k --description 'Keep the intermediate video file on disk after post-processing'
 complete --command yt-dlp --long-option no-keep-video --description 'Delete the intermediate video file after post-processing (default)'
@@ -243,7 +253,7 @@ complete --command yt-dlp --long-option metadata-from-title
 complete --command yt-dlp --long-option parse-metadata --description 'Parse additional metadata like title/artist from other fields; see "MODIFYING METADATA" for details'
 complete --command yt-dlp --long-option replace-in-metadata --description 'Replace text in a metadata field using the given regex. This option can be used multiple times'
 complete --command yt-dlp --long-option xattrs --description 'Write metadata to the video file'"'"'s xattrs (using dublin core and xdg standards)'
-complete --command yt-dlp --long-option concat-playlist --description 'Concatenate videos in a playlist. One of "never", "always", or "multi_video" (default; only when the videos form a single show). All the video files must have same codecs and number of streams to be concatable. The "pl_video:" prefix can be used with "--paths" and "--output" to set the output filename for the split files. See "OUTPUT TEMPLATE" for details'
+complete --command yt-dlp --long-option concat-playlist --description 'Concatenate videos in a playlist. One of "never", "always", or "multi_video" (default; only when the videos form a single show). All the video files must have same codecs and number of streams to be concatable. The "pl_video:" prefix can be used with "--paths" and "--output" to set the output filename for the concatenated files. See "OUTPUT TEMPLATE" for details'
 complete --command yt-dlp --long-option fixup --description 'Automatically correct known faults of the file. One of never (do nothing), warn (only emit a warning), detect_or_warn (the default; fix file if we can, warn otherwise), force (try fixing even if file already exists)'
 complete --command yt-dlp --long-option prefer-avconv
 complete --command yt-dlp --long-option prefer-ffmpeg
@@ -252,18 +262,18 @@ complete --command yt-dlp --long-option exec --description 'Execute a command, o
 complete --command yt-dlp --long-option no-exec --description 'Remove any previously defined --exec'
 complete --command yt-dlp --long-option exec-before-download
 complete --command yt-dlp --long-option no-exec-before-download
-complete --command yt-dlp --long-option convert-subs --description 'Convert the subtitles to another format (currently supported: srt|vtt|ass|lrc) (Alias: --convert-subtitles)'
-complete --command yt-dlp --long-option convert-thumbnails --description 'Convert the thumbnails to another format (currently supported: jpg|png|webp) '
+complete --command yt-dlp --long-option convert-subs --description 'Convert the subtitles to another format (currently supported: srt, vtt, ass, lrc) (Alias: --convert-subtitles)'
+complete --command yt-dlp --long-option convert-thumbnails --description 'Convert the thumbnails to another format (currently supported: jpg, png, webp). You can specify multiple rules using similar syntax as --remux-video'
 complete --command yt-dlp --long-option split-chapters --description 'Split video into multiple files based on internal chapters. The "chapter:" prefix can be used with "--paths" and "--output" to set the output filename for the split files. See "OUTPUT TEMPLATE" for details'
 complete --command yt-dlp --long-option no-split-chapters --description 'Do not split video based on chapters (default)'
-complete --command yt-dlp --long-option remove-chapters --description 'Remove chapters whose title matches the given regular expression. Time ranges prefixed by a "*" can also be used in place of chapters to remove the specified range. Eg: --remove-chapters "*10:15-15:00" --remove-chapters "intro". This option can be used multiple times'
+complete --command yt-dlp --long-option remove-chapters --description 'Remove chapters whose title matches the given regular expression. The syntax is the same as --download-sections. This option can be used multiple times'
 complete --command yt-dlp --long-option no-remove-chapters --description 'Do not remove any chapters from the file (default)'
-complete --command yt-dlp --long-option force-keyframes-at-cuts --description 'Force keyframes around the chapters before removing/splitting them. Requires a re-encode and thus is very slow, but the resulting video may have fewer artifacts around the cuts'
+complete --command yt-dlp --long-option force-keyframes-at-cuts --description 'Force keyframes at cuts when downloading/splitting/removing sections. This is slow due to needing a re-encode, but the resulting video may have fewer artifacts around the cuts'
 complete --command yt-dlp --long-option no-force-keyframes-at-cuts --description 'Do not force keyframes around the chapters when cutting/splitting (default)'
 complete --command yt-dlp --long-option use-postprocessor --description 'The (case sensitive) name of plugin postprocessors to be enabled, and (optionally) arguments to be passed to it, separated by a colon ":". ARGS are a semicolon ";" delimited list of NAME=VALUE. The "when" argument determines when the postprocessor is invoked. It can be one of "pre_process" (after video extraction), "after_filter" (after video passes filter), "before_dl" (before each video download), "post_process" (after each video download; default), "after_move" (after moving video file to it'"'"'s final locations), "after_video" (after downloading and processing all formats of a video), or "playlist" (at end of playlist). This option can be used multiple times to add different postprocessors'
-complete --command yt-dlp --long-option sponsorblock-mark --description 'SponsorBlock categories to create chapters for, separated by commas. Available categories are all, default(=all), sponsor, intro, outro, selfpromo, preview, filler, interaction, music_offtopic, poi_highlight. You can prefix the category with a "-" to exempt it. See [1] for description of the categories. Eg: --sponsorblock-mark all,-preview [1] https://wiki.sponsor.ajay.app/w/Segment_Categories'
+complete --command yt-dlp --long-option sponsorblock-mark --description 'SponsorBlock categories to create chapters for, separated by commas. Available categories are sponsor, intro, outro, selfpromo, preview, filler, interaction, music_offtopic, poi_highlight, all and default (=all). You can prefix the category with a "-" to exclude it. See [1] for description of the categories. Eg: --sponsorblock-mark all,-preview [1] https://wiki.sponsor.ajay.app/w/Segment_Categories'
 complete --command yt-dlp --long-option sponsorblock-remove --description 'SponsorBlock categories to be removed from the video file, separated by commas. If a category is present in both mark and remove, remove takes precedence. The syntax and available categories are the same as for --sponsorblock-mark except that "default" refers to "all,-filler" and poi_highlight is not available'
-complete --command yt-dlp --long-option sponsorblock-chapter-title --description 'The title template for SponsorBlock chapters created by --sponsorblock-mark. The same syntax as the output template is used, but the only available fields are start_time, end_time, category, categories, name, category_names. Defaults to "%default"'
+complete --command yt-dlp --long-option sponsorblock-chapter-title --description 'An output template for the title of the SponsorBlock chapters created by --sponsorblock-mark. The only available fields are start_time, end_time, category, categories, name, category_names. Defaults to "%default"'
 complete --command yt-dlp --long-option no-sponsorblock --description 'Disable both --sponsorblock-mark and --sponsorblock-remove'
 complete --command yt-dlp --long-option sponsorblock-api --description 'SponsorBlock API location, defaults to %default'
 complete --command yt-dlp --long-option sponskrub

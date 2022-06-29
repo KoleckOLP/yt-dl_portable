@@ -66,4 +66,10 @@ public:
     void setSocketOptions(QLocalServer::SocketOptions options);
     QLocalServer::SocketOptions socketOptions() const;
     qintptr socketDescriptor() const;
+%If (Qt_6_3_0 -)
+    void setListenBacklogSize(int size);
+%End
+%If (Qt_6_3_0 -)
+    int listenBacklogSize() const;
+%End
 };

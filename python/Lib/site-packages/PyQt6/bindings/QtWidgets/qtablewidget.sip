@@ -235,3 +235,10 @@ public:
 private:
     virtual void setModel(QAbstractItemModel *model /KeepReference/);
 };
+
+%If (Qt_6_3_0 -)
+bool operator==(const QTableWidgetSelectionRange &lhs, const QTableWidgetSelectionRange &rhs);
+%End
+%If (Qt_6_3_0 -)
+bool operator!=(const QTableWidgetSelectionRange &lhs, const QTableWidgetSelectionRange &rhs);
+%End

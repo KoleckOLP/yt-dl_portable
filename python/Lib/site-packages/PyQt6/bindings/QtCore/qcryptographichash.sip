@@ -57,11 +57,24 @@ public:
     explicit QCryptographicHash(QCryptographicHash::Algorithm method);
     ~QCryptographicHash();
     void reset();
-    void addData(const char *data /Array/, qsizetype length /ArraySize/);
+%If (Qt_6_3_0 -)
+    void addData(QByteArrayView data);
+%End
+%If (- Qt_6_3_0)
     void addData(const QByteArray &data);
+%End
+    void addData(const char *data /Array/, qsizetype length /ArraySize/);
     bool addData(QIODevice *device);
     QByteArray result() const;
+%If (Qt_6_3_0 -)
+    QByteArrayView resultView() const;
+%End
+%If (Qt_6_3_0 -)
+    static QByteArray hash(QByteArrayView data, QCryptographicHash::Algorithm method);
+%End
+%If (- Qt_6_3_0)
     static QByteArray hash(const QByteArray &data, QCryptographicHash::Algorithm method);
+%End
     static int hashLength(QCryptographicHash::Algorithm method);
 
 private:

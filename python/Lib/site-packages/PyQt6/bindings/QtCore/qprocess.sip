@@ -210,6 +210,17 @@ class QProcessEnvironment
 %End
 
 public:
+%If (Qt_6_3_0 -)
+
+    enum Initialization
+    {
+        InheritFromParent,
+    };
+
+%End
+%If (Qt_6_3_0 -)
+    QProcessEnvironment(QProcessEnvironment::Initialization);
+%End
     QProcessEnvironment();
     QProcessEnvironment(const QProcessEnvironment &other);
     ~QProcessEnvironment();
@@ -226,6 +237,9 @@ public:
     static QProcessEnvironment systemEnvironment();
     QStringList keys() const;
     void swap(QProcessEnvironment &other /Constrained/);
+%If (Qt_6_3_0 -)
+    bool inheritsFromParent() const;
+%End
 };
 
 %End

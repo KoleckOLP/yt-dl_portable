@@ -164,4 +164,12 @@ protected:
 %If (PyQt_SSL)
     virtual void ignoreSslErrorsImplementation(const QList<QSslError> &);
 %End
+
+signals:
+%If (Qt_6_3_0 -)
+    void socketStartedConnecting();
+%End
+%If (Qt_6_3_0 -)
+    void requestSent();
+%End
 };

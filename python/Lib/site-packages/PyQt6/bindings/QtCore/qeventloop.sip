@@ -36,7 +36,6 @@ public:
         ExcludeUserInputEvents,
         ExcludeSocketNotifiers,
         WaitForMoreEvents,
-        X11ExcludeTimers,
     };
 
     typedef QFlags<QEventLoop::ProcessEventsFlag> ProcessEventsFlags;

@@ -39,6 +39,9 @@ public:
             sipError = sipBadCallableArg(0, a0Wrapper);
 %End
 
+%If (Qt_6_3_0 -)
+    virtual ~QBitmap();
+%End
     void clear();
     static QBitmap fromImage(const QImage &image, Qt::ImageConversionFlags flags = Qt::AutoColor);
     static QBitmap fromPixmap(const QPixmap &pixmap);

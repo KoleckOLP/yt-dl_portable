@@ -27,13 +27,28 @@ class QByteArrayMatcher
 %End
 
 public:
-    QByteArrayMatcher();
+%If (Qt_6_3_0 -)
+    QByteArrayMatcher(const char *pattern /Encoding="None"/, qsizetype length = -1);
+%End
+%If (- Qt_6_3_0)
     QByteArrayMatcher(const char *pattern /Encoding="None"/, qsizetype length);
+%End
+%If (Qt_6_3_0 -)
+    explicit QByteArrayMatcher(QByteArrayView pattern);
+%End
+%If (- Qt_6_3_0)
     explicit QByteArrayMatcher(const QByteArray &pattern);
+%End
+    QByteArrayMatcher();
     QByteArrayMatcher(const QByteArrayMatcher &other);
     ~QByteArrayMatcher();
     void setPattern(const QByteArray &pattern);
-    qsizetype indexIn(const char *str /Encoding="None"/, qsizetype len, qsizetype from = 0) const;
+%If (Qt_6_3_0 -)
+    qsizetype indexIn(QByteArrayView data, qsizetype from = 0) const;
+%End
+%If (- Qt_6_3_0)
     qsizetype indexIn(const QByteArray &ba, qsizetype from = 0) const;
+%End
+    qsizetype indexIn(const char *str /Encoding="None"/, qsizetype len, qsizetype from = 0) const;
     QByteArray pattern() const;
 };

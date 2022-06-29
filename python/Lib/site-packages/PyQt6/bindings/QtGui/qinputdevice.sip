@@ -81,4 +81,9 @@ public:
 
 signals:
     void availableVirtualGeometryChanged(QRect area);
+
+public:
+%If (Qt_6_3_0 -)
+    static QStringList seatNames();
+%End
 };

@@ -78,6 +78,9 @@ public:
         YCbCr_xvYCC601,
         YCbCr_xvYCC709,
         YCbCr_JPEG,
+%If (Qt_6_3_0 -)
+        YCbCr_BT2020,
+%End
     };
 
     QVideoFrameFormat();
@@ -106,6 +109,9 @@ public:
     void setMirrored(bool mirrored);
     static QVideoFrameFormat::PixelFormat pixelFormatFromImageFormat(QImage::Format format);
     static QImage::Format imageFormatFromPixelFormat(QVideoFrameFormat::PixelFormat format);
+%If (Qt_6_2_0 -)
+    static QString pixelFormatToString(QVideoFrameFormat::PixelFormat pixelFormat);
+%End
 };
 
 %End

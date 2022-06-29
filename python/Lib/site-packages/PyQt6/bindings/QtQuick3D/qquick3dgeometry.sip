@@ -108,4 +108,25 @@ public:
     void clear();
     QByteArray vertexData() const;
     QByteArray indexData() const;
+%If (Qt_6_3_0 -)
+    int subsetCount(int subset) const;
+%End
+%If (Qt_6_3_0 -)
+    int subsetCount() const;
+%End
+%If (Qt_6_3_0 -)
+    QVector3D subsetBoundsMin(int subset) const;
+%End
+%If (Qt_6_3_0 -)
+    QVector3D subsetBoundsMax(int subset) const;
+%End
+%If (Qt_6_3_0 -)
+    int subsetOffset(int subset) const;
+%End
+%If (Qt_6_3_0 -)
+    QString subsetName(int subset) const;
+%End
+%If (Qt_6_3_0 -)
+    void addSubset(int offset, int count, const QVector3D &boundsMin, const QVector3D &boundsMax, const QString &name = {});
+%End
 };

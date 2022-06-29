@@ -124,6 +124,9 @@ public:
 %If (Qt_6_2_0 -)
     QList<QQmlAbstractUrlInterceptor *> urlInterceptors() const;
 %End
+%If (Qt_6_3_0 -)
+    void clearSingletons();
+%End
 };
 
 class QQmlImageProviderBase : QObject
