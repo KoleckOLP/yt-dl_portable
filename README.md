@@ -11,10 +11,12 @@ this means the release is postponed until everything works and portable and then
 
 this one command downloads everything required (you only need git, Windows x64)
 
-``git clone --recursive https://github.com/koleckolp/yt-dl_portable``
+``git clone https://github.com/koleckolp/yt-dl_portable``
 
 after cloning is done  you just need to run ``yt-dl_portable.bat`` (currently Windows x64 only)
 
-after that go to the **Settings** tab and set your Python to `..\python\python` and your Pip to `..\python\python -m pip`
+this will download the latest build of yt-dl and launch it
+
+(this step is soon to be removed) after that go to the **Settings** tab and set your Python to `..\python\python` and your Pip to `..\python\python -m pip`
 
 icon for your shortcut is located in ``yt-dl_portable/yt-dl/gui/y.ico`` 
