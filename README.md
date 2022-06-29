@@ -15,4 +15,6 @@ this one command downloads everything required (you only need git, Windows x64)
 
 after cloning is done  you just need to run ``yt-dl_portable.bat`` (currently Windows x64 only)
 
+after that go to the **Settings** tab and set your Python to `..\python\python` and your Pip to `..\python\python -m pip`
+
 icon for your shortcut is located in ``yt-dl_portable/yt-dl/gui/y.ico`` 
